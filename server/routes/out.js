@@ -4,6 +4,8 @@ var request = require('request');
 
 module.exports = function(db) {  
 
+  var router = express.Router();
+
   router.get('/login', function(req, res) {
     //query the facebook api
   });

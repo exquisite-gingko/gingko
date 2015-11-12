@@ -7,7 +7,8 @@ var dbController = require('./services/controllers');
 var inRouter = require('./routes/in');
 var outRouter = require('./routes/out');
 
-inRouter = apiRouter(dbController);
+
+inRouter = inRouter(dbController);
 outRouter = outRouter(dbController)
 
 var bodyParser = require('body-parser');
