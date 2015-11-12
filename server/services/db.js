@@ -6,7 +6,7 @@ var Sequelize = require("sequelize");
 
 var db = new Sequelize("TableSurf", "root", "", {
   dialect: "postgres", // or 'sqlite', mysql', 'mariadb'
-  // port:    3306, // or 5432 (for postgres)
+  port: 5432 //(for postgres)
 });
 
 db.authenticate().complete(function(err) {
