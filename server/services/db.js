@@ -87,10 +87,10 @@ var Genre = db.define("Genre", {
 
 Genre.belongsTo(Meals);
 
-User.sync();
-Meals.sync();
-Restaurants.sync();
-Genre.sync();
+// User.sync();
+// Meals.sync();
+// Restaurants.sync();
+// Genre.sync();
 
 exports.Meals = Meals;
 exports.User = User;
