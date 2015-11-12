@@ -20,6 +20,13 @@
     "font-awesome": "~4.4.0",
     "jquery": "~2.1.4",
     "lodash": "~3.10.1",
-    "json3": "~3.3.2"
+    "json3": "~3.3.2",
+    "angular-ui-router": "~0.2.15",
+    "angular-animate": "~1.4.7",
+    "angular-aria": "~1.4.7",
+    "angular-cookies": "~1.4.7",
+    "angular-material": "~0.11.4",
+    "angular-resource": "~1.4.7",
+    "angular-sanitize": "~1.4.7"
   }
 }
