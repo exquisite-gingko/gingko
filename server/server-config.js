@@ -14,6 +14,7 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
+app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use('/api/in', inRouter);

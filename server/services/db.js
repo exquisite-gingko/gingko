@@ -4,20 +4,20 @@ var Sequelize = require("sequelize");
 
 
 
-var db = new Sequelize("TableSurf", "root", "", {
+var db = new Sequelize("tablesurfer", "admin", "admin", {
   dialect: "postgres", // or 'sqlite', mysql', 'mariadb'
-  // port:    3306, // or 5432 (for postgres)
+  port: 5432 //(for postgres)
 });
 
-db.authenticate().complete(function(err) {
-  if (!!err) {
-    console.log('Unable to connect to the database:', err)
-  } else {
-    console.log('Connection has been established successfully.')
-  }
-});
+// .authenticate().complete(function(err) {
+//   if (!!err) {
+//     console.log('Unable to connect to the database:', err)
+//   } else {
+//     console.log('Connection has been established successfully.')
+//   }
+// });
 
-var Users = db.define("Users", {
+var User = db.define("User", {
   //here we will have to figure out the data from facebook on authentication
   firstName: {
     type: Sequelize.STRING,
@@ -26,10 +26,10 @@ var Users = db.define("Users", {
   lastName: {
     type: Sequelize.STRING,
     allowNull: false
-  },
-  photo: {
-    //lookup datatype for sequelize
   }
+  // photo: {
+  //   //lookup datatype for sequelize
+  // }
 });
 
 var Meals = db.define("Meals", {
@@ -51,8 +51,9 @@ var Meals = db.define("Meals", {
     allowNull: false
   }
 });
-//create user foreign key for meal
-Users.belongsTo(Meals);
+//create user user foreign key for meal
+// User.belongsTo(Meals);
+// Meals.hasMany(User); ???
 
 var Restaurants = db.define("Restaurants", {
   name: {
@@ -82,4 +83,10 @@ var Genre = db.define("Genre", {
 
 Genre.belongsTo(Meals);
 
+User.sync();
+Meals.sync();
+// Restaurants.sync();
+// Genre.sync();
+
 exports.Meals = Meals;
+exports.User = User;
