@@ -4,18 +4,18 @@ var Sequelize = require("sequelize");
 
 
 
-var db = new Sequelize("TableSurf", "root", "", {
+var db = new Sequelize("tablesurfer", "admin", "admin", {
   dialect: "postgres", // or 'sqlite', mysql', 'mariadb'
   port: 5432 //(for postgres)
 });
 
-db.authenticate().complete(function(err) {
-  if (!!err) {
-    console.log('Unable to connect to the database:', err)
-  } else {
-    console.log('Connection has been established successfully.')
-  }
-});
+// .authenticate().complete(function(err) {
+//   if (!!err) {
+//     console.log('Unable to connect to the database:', err)
+//   } else {
+//     console.log('Connection has been established successfully.')
+//   }
+// });
 
 var User = db.define("User", {
   //here we will have to figure out the data from facebook on authentication
@@ -49,15 +49,11 @@ var Meals = db.define("Meals", {
   description: {
     type: Sequelize.STRING,
     allowNull: false
-  },
-  userId: {
-    references: "Users",
-    referencesKey: "id"
   }
 });
 //create user user foreign key for meal
 // User.belongsTo(Meals);
-//Meas.hasMany(User); ???
+// Meals.hasMany(User); ???
 
 var Restaurants = db.define("Restaurants", {
   name: {
@@ -87,8 +83,8 @@ var Genre = db.define("Genre", {
 
 Genre.belongsTo(Meals);
 
-// User.sync();
-// Meals.sync();
+User.sync();
+Meals.sync();
 // Restaurants.sync();
 // Genre.sync();
 
