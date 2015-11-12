@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TableSurfer</title>
+    <link rel="stylesheet" href="lib/angular-material/angular-material.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="styles/style.css" />
+    <meta charset="utf-8" />
+  </head>
+  <body ng-app"tablesurfer">
+
+    <!-- navigation bar -->
+    <md-toolbar id="nav" layout="row" layout-align="center end" class="md-tall">
+       <div flex flex-sm="100" flex-gt-sm="95" flex-gt-md="80" layout="column">
+           <h1>TableSurfer</h1>
+           <span flex></span>
+           <md-tabs md-selected="currentTab" md-stretch-tabs="always" class="md-primary md-hue-2">
+               <md-tab ui-sref="home" id="home/home.html" aria-controls="Tab 1">
+                   <md-tab-label>Shelf</md-tab-label>
+               </md-tab>
+           </md-tabs>
+       </div>
+    </md-toolbar>
+    <!-- end nav -->
+
+    <!-- adding site and application content here -->
+    <!-- TODO: Remember we are using state based ui-routing vs default ng-route -->
+    <div ui-view></div>
+
+    <!-- bower start -->
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="lib/lodash/lodash.min.js"></script>
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="lib/angular-aria/angular-aria.js"></script>
+    <script src="lib/angular-animate/angular-animate.js"></script>
+    <script src="lib/angular-material/angular-material.js"></script>
+    <script src="lib/angular-cookies/angular-cookies.js"></script>
+    <script src="lib/angular-resource/angular-resource.js"></script>
+    <script src="lib/angular-sanitize/angular-sanitize.js"></script>
+    <!-- bower end -->
+
+    <!-- js inject start -->
+    <script src="app/app.js" charset="utf-8"></script>
+    <!-- js inject end -->
+
+  </body>
+</html>
