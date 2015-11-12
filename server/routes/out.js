@@ -16,4 +16,6 @@ module.exports = function(db) {
     //query google for google maps stuff
   });
 
+  return router;
+
 };

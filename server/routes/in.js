@@ -25,4 +25,6 @@ module.exports = function(db) {
     //and this posts needed details to the query to insert it into the database
   });
 
+  return router;
+
 };
