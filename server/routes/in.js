@@ -2,13 +2,13 @@ var express = require('express');
 var request = require('request');
 
 
-module.exports = function(db) {
+module.exports = function(dbControllers) {
 
   var router = express.Router();
 
   //posting to the query file which will post to the meals database details of a new event
   router.post('/meals', function(req, res) {
-    db.meals.post(req, res);
+    dbControllers.meals.post(req, res);
   });
 
   router.get('/seeMeals', function(req, res) {
@@ -17,6 +17,12 @@ module.exports = function(db) {
 
   router.post('/join', function(req, res) {
     //route to join an event
+  });
+
+  //testing purposes only?? Do not thing that this is relevant to our app currenly?
+  router.get('/user', function(req, res) {
+    //get the user details from the database
+    dbControllers.user.get(req, res);
   });
 
   router.post('/user', function(req, res) {
