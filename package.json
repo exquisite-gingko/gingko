@@ -5,8 +5,10 @@
   "main": "server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "jscs ./",
     "start": "node server/server.js"
   },
+  "pre-commit": "lint",
   "repository": {
     "type": "git",
     "url": "https://github.com/aackerman050/gingko.git"
