@@ -7,7 +7,7 @@ var apiRouter = require('./routes/routes');
 var bodyParser = require('body-parser');
 
 var app = express();
-apiRouter = apiRouter(dbController);
+// apiRouter = apiRouter(dbController);
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
