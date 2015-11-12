@@ -3,16 +3,22 @@ var express = require('express');
 var morgan = require('morgan');
 var cors = require('cors');
 var dbController = require('./services/controllers');
-var apiRouter = require('./routes/routes');
+//requite the routes file 
+var inRouter = require('./routes/in');
+var outRouter = require('./routes/out');
+
+inRouter = apiRouter(dbController);
+outRouter = outRouter(dbController)
+
 var bodyParser = require('body-parser');
 
 var app = express();
-apiRouter = apiRouter(dbController);
 
+app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
-app.use(cors());
-app.use('/api', apiRouter);
+app.use('/api/in', inRouter);
+app.use('/api/out', outRouter);
 
 app.get('/', function(req, res) {
   res.send("Hello, world!");
