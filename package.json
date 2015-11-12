@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/aackerman050/gingko",
   "dependencies": {
+    "angular": "^1.4.7",
+    "angular-mocks": "^1.4.7",
+    "angular-route": "^1.4.7",
     "body-parser": "^1.14.1",
     "cors": "^2.7.1",
     "express": "^4.13.3",
