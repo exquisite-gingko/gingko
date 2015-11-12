@@ -2,9 +2,6 @@
   "name": "tablesurfers",
   "description": "",
   "main": "/server/server.js",
-  "authors": [
-    "David Tsai <David@whataniceguy.com>"
-  ],
   "license": "ISC",
   "homepage": "https://github.com/tsaiDavid/gingko",
   "moduleType": [],
