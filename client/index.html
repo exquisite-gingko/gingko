@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
     <title>TableSurfer</title>
     <link rel="stylesheet" href="lib/angular-material/angular-material.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
+    <meta charset="utf-8" />
   </head>
   <body ng-app"tablesurfer">
 
@@ -17,9 +17,6 @@
                <md-tab ui-sref="home" id="home/home.html" aria-controls="Tab 1">
                    <md-tab-label>Shelf</md-tab-label>
                </md-tab>
-               <md-tab ui-sref="account" id="account/account.html" aria-controls="Tab 2">
-                   <md-tab-label>Account</md-tab-label>
-               </md-tab>
            </md-tabs>
        </div>
     </md-toolbar>
@@ -30,16 +27,16 @@
     <div ui-view></div>
 
     <!-- bower start -->
-    <script src="lib/jquery/jquery.js"></script>
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="lib/lodash/lodash.min.js"></script>
     <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="lib/angular-aria/angular-aria.js"></script>
     <script src="lib/angular-animate/angular-animate.js"></script>
     <script src="lib/angular-material/angular-material.js"></script>
     <script src="lib/angular-cookies/angular-cookies.js"></script>
     <script src="lib/angular-resource/angular-resource.js"></script>
     <script src="lib/angular-sanitize/angular-sanitize.js"></script>
-    <script src="lib/lodash/lodash.compat.js"></script>
-    <script src="lib/angular-ui-router/angular-ui-router.js"></script>
     <!-- bower end -->
 
     <!-- js inject start -->
