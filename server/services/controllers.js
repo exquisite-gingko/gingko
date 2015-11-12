@@ -1,14 +1,14 @@
 var database = require('./db');
 
 module.exports = {
-  users: {
+  user: {
     get: function (req, res) {
-      // database.Users.findAll().then(function (users) {
+      // database.User.findAll().then(function (User) {
 
       // })
     },
     post: function (req, res) {
-      database.Users.create({
+      database.User.create({
         firstName: req.body.firstName,
         lastName: req.body.lastName
       }).then(function (user) {
@@ -21,12 +21,18 @@ module.exports = {
 
     },
     post: function (req, res) {
-      database.Users.findOrCreate({where: {firstName: req.body.firstName, lastName: req.body.lastName}})
+      database.User.findOrCreate({where: {firstName: req.body.firstName, lastName: req.body.lastName}})
         .then(function (user) {
           database.Meals.create({
-            
-          })
-        })
+            date: req.body.date,
+            time: req.body.time,
+            attendees: req.body.attendees,
+            description: req.body.description
+            userId: user.id
+          }).then(function (message) {
+            res.sendStatus(201);
+          });
+        });
     }
   },
   restaurants: {},

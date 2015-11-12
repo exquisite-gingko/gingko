@@ -17,7 +17,7 @@ db.authenticate().complete(function(err) {
   }
 });
 
-var Users = db.define("Users", {
+var User = db.define("User", {
   //here we will have to figure out the data from facebook on authentication
   firstName: {
     type: Sequelize.STRING,
@@ -49,10 +49,15 @@ var Meals = db.define("Meals", {
   description: {
     type: Sequelize.STRING,
     allowNull: false
+  },
+  userId: {
+    references: "Users",
+    referencesKey: "id"
   }
 });
-//create user foreign key for meal
-Users.belongsTo(Meals);
+//create user user foreign key for meal
+// User.belongsTo(Meals);
+//Meas.hasMany(User); ???
 
 var Restaurants = db.define("Restaurants", {
   name: {
@@ -82,5 +87,10 @@ var Genre = db.define("Genre", {
 
 Genre.belongsTo(Meals);
 
+User.sync();
+Meals.sync();
+Restaurants.sync();
+Genre.sync();
+
 exports.Meals = Meals;
-exports.Users = Users;
+exports.User = User;
