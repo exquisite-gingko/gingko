@@ -67,3 +67,5 @@ var Genre = db.define("Genre", {
 });
 
 Genre.belongsTo(Meals);
+
+exports.Meals = Meals;
