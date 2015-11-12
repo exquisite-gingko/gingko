@@ -2,8 +2,10 @@ var request = require("request");
 var assert = require('assert');
 var Mocha = require('mocha');
 var expect = require('chai').expect;
+var Sequelize = require("sequelize");
 
 describe("Persistent Node Chat Server", function() {
+  
   var dbConnection;
 
   beforeEach(function(done) {

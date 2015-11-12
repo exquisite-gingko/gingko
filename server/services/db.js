@@ -1,7 +1,21 @@
 var Sequelize = require("sequelize");
 
 //Unsure if we need password, come back to this
-var db = new Sequelize("TableSurf", "root", "");
+
+
+
+var db = new Sequelize("TableSurf", "root", "", {
+  dialect: "postgres", // or 'sqlite', mysql', 'mariadb'
+  // port:    3306, // or 5432 (for postgres)
+});
+
+db.authenticate().complete(function(err) {
+  if (!!err) {
+    console.log('Unable to connect to the database:', err)
+  } else {
+    console.log('Connection has been established successfully.')
+  }
+});
 
 var Users = db.define("Users", {
   //here we will have to figure out the data from facebook on authentication
