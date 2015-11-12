@@ -2,11 +2,13 @@
   "name": "gingko",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "jscs ./",
     "start": "node server/server.js"
   },
+  "pre-commit": "lint",
   "repository": {
     "type": "git",
     "url": "https://github.com/aackerman050/gingko.git"
@@ -18,10 +20,18 @@
   },
   "homepage": "https://github.com/aackerman050/gingko",
   "dependencies": {
+    "assert": "^1.3.0",
     "body-parser": "^1.14.1",
+    "chai": "^3.4.1",
     "cors": "^2.7.1",
     "express": "^4.13.3",
+    "grunt": "^0.4.5",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-uglify": "^0.10.1",
+    "grunt-mocha-test": "^0.12.7",
+    "mocha": "^2.3.3",
     "morgan": "^1.6.1",
+    "request": "^2.65.0",
     "sequelize": "^3.13.0"
   }
 }
