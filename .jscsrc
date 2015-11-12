@@ -1,0 +1,5 @@
+/* Using airbnb style standard, as per HR + ind suggestion */
+
+{
+    "preset": "airbnb"
+}
