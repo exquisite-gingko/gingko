@@ -26,10 +26,10 @@ var Users = db.define("Users", {
   lastName: {
     type: Sequelize.STRING,
     allowNull: false
-  },
-  photo: {
-    //lookup datatype for sequelize
   }
+  // photo: {
+  //   //lookup datatype for sequelize
+  // }
 });
 
 var Meals = db.define("Meals", {
@@ -83,3 +83,4 @@ var Genre = db.define("Genre", {
 Genre.belongsTo(Meals);
 
 exports.Meals = Meals;
+exports.Users = Users;
