@@ -90,3 +90,4 @@ db.sync();
 exports.Meals = Meals;
 exports.Users = Users;
 exports.Restaurants = Restaurants;
+exports.Attendees = Attendees;

@@ -25,14 +25,17 @@ module.exports = {
       .then(function(user) {
         //this should get the user data that matched the user details passed
         var user_id = user.id;
-        return database.Meals.find({ where: {description: data.description} })
+        console.log("--------------user_id: ", user_id);
+        return database.Meals.find({ where: {description: data.eventDetails} })
         .then(function(meal) {
+          console.log('in meal, and the meal is ', meal.id);
           //meal should be an object containing the table input for this meal
           var meal_id = meal.id;
+          // console.log("--------------meal_id: ", meal_id);
           console.log('data being made');
-          return database.Atendees.create({
-            user_id: user_id,
-            meal_id: meal_id
+          return database.Attendees.create({
+            UserId: user_id,
+            MealId: meal_id
           })
           .then(function(attendee) {
             console.log('data added')
