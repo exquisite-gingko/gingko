@@ -47,6 +47,7 @@ module.exports = {
     //---------------------------refactored this moring---------------------------------------------//
     post: function (data) {
       return database.User.find({where: {firstName: data.firstName, lastName: data.lastName}})
+
         .then(function (user) {
           return database.Meals.create({
             date: data.date,

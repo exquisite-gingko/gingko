@@ -48,19 +48,9 @@ var Meals = db.define("Meals", {
   }
 });
 //create Users Users foreign key for meal
-// Meals.belongsTo(Users);
-// Users.belongsTo(Meals);
-// Meals.hasMany(Users);
-// Meals.hasMany(Users, {foreignKey: 'id'});
-// Users.belongsTo(Meals, {foreignKey: 'id'});
-// Users.hasMany(Meals, { as: 'Host'});
-// Meals.belongsTo(Users, { as: 'Host'});
-// User.belongsTo(Meals);
+Users.hasOne(Meals);
+Meals.belongsTo(Users);
 
-// var Atendees = db.define("Atendees", {
-//   //foreign key for event
-//   //foreign keys for users
-// });
 
 var Restaurants = db.define("Restaurants", {
   name: {
@@ -79,21 +69,27 @@ var Restaurants = db.define("Restaurants", {
 });
 
 //create restaurant foreign key for meal
-Restaurants.belongsTo(Meals);
+Restaurants.hasOne(Meals);
+Meals.belongsTo(Restaurants);
 
-var Genre = db.define("Genre", {
+var Genres = db.define("Genres", {
   name: {
     type: Sequelize.STRING,
     allowNull: false
   }
 });
 
-Genre.belongsTo(Meals);
+Genres.hasOne(Restaurants);
+Restaurants.belongsTo(Genres);
 
-Users.sync({force: true});
-Meals.sync({force: true});
-// Restaurants.sync();
-// Genre.sync();
+var Attendees = db.define("Attendees", {
+
+});
+
+Users.belongsToMany(Meals, {through: 'Attendees'});
+Meals.belongsToMany(Users, {through: 'Attendees'});
+
+db.sync();
 
 exports.Meals = Meals;
 exports.Users = Users;
