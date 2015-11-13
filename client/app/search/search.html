@@ -1,0 +1,42 @@
+<div id="search">
+  <div ng-controller="SearchCtrl as ctrl" layout="column" ng-cloak>
+    <md-content layout-padding layout="column">
+      <form ng-submit="$event.preventDefault(); add()">
+        <!-- md autocomplete settings + start -->
+        <md-autocomplete
+            md-selected-item="ctrl.selectedItem"
+            md-selected-item-change="ctrl.selectedItemChange(item)"
+            md-search-text-change="searchTextChange(ctrl.searchText)"
+            md-search-text="ctrl.searchText"
+            md-items="item in querySearch(ctrl.searchText)"
+            md-item-text="item.title"
+            md-min-length="1"
+            md-floating-label="Search for a resturaunt..."
+            md-menu-class="autocomplete-search">
+
+          <span md-highlight-text="ctrl.searchText">{{item.title}}</span>
+          <!-- autocomplete display start -->
+          <md-item-template>
+            <span class="item-title">
+              <span><strong> {{item.title}} </strong></span>
+            </span>
+            <span class="item-metadata">
+              <span class="item-metastat">
+                <span>by {{item.author[0]}}</span>
+              </span>
+            </span>
+          </md-item-template>
+          <md-not-found>
+            <span>Sorry, no resturaunts found! Please try again!</span>
+          </md-not-found>
+          <!-- autcomplete display end -->
+
+        </md-autocomplete>
+        <!-- md autocomplete settings end -->
+        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+          <md-button class="md-raised md-primary" ng-disabled="!ctrl.selectedItem">Add</md-button>
+        </section>
+      </form>
+    </md-content>
+  </div>
+</div>

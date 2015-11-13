@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TableSurfer</title>
+    <title>TableSurfers</title>
     <link rel="stylesheet" href="lib/angular-material/angular-material.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
     <meta charset="utf-8" />
   </head>
-  <body ng-app="tablesurfer">
+  <body ng-app="app">
 
     <!-- navigation bar -->
     <md-toolbar id="nav" layout="row" layout-align="center end" class="md-tall">
        <div flex flex-sm="100" flex-gt-sm="95" flex-gt-md="80" layout="column">
-           <h1>TableSurfer</h1>
+           <h1>TableSurfers</h1>
            <span flex></span>
            <md-tabs md-selected="currentTab" md-stretch-tabs="always" class="md-primary md-hue-2">
                <md-tab ui-sref="home" id="home/home.html" aria-controls="Tab 1">
-                   <md-tab-label>Shelf</md-tab-label>
+                   <md-tab-label>Home</md-tab-label>
                </md-tab>
            </md-tabs>
        </div>
@@ -40,8 +40,12 @@
     <!-- bower end -->
 
     <!-- js inject start -->
-    <script src="app/home/home.js" charset="utf-8"></script>
-    <script src="app/app.js" charset="utf-8"></script>
+    <script src="app/app.module.js" charset="utf-8"></script>
+    <script src="app/app.routes.js" charset="utf-8"></script>
+    <script src="app/home/home.controller.js" charset="utf-8"></script>
+    <script src="app/home/home.factory.js" charset="utf-8"></script>
+    <script src="app/search/search.controller.js" charset="utf-8"></script>
+    <script src="app/search/search.factory.js" charset="utf-8"></script>
     <!-- js inject end -->
 
   </body>
