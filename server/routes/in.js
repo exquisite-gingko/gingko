@@ -9,10 +9,12 @@ module.exports = function(dbController) {
   //posting to the query file which will post to the meals database details of a new event
   router.post('/meals', function (req, res) {
     dbController.meals.post(req, res);
+    //after posting, redirect to get meals
   });
 
-  router.get('/seeMeals', function (req, res) {
+  router.get('/meals', function (req, res) {
     //request on loading the main page to see the upcoming meals
+    dbController.meals.get(req, res);
   });
 
   router.post('/join', function (req, res) {
