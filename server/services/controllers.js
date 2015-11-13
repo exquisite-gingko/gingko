@@ -39,5 +39,5 @@ module.exports = {
     }
   },
   restaurants: {},
-  genre: {}
+  genre: {}  
 }

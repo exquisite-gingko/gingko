@@ -21,7 +21,13 @@ module.exports = function(dbController) {
     //route to join an event
   });
 
-  router.post('/user', function (req, res) {
+  //testing purposes only?? Do not thing that this is relevant to our app currenly?
+  router.get('/user', function(req, res) {
+    //get the user details from the database
+    dbControllers.user.get(req, res);
+  });
+
+  router.post('/user', function(req, res) {
     //request sent to facebook for details
     //the response is then sent here
     //and this posts needed details to the query to insert it into the database
