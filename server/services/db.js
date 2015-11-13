@@ -49,7 +49,7 @@ var Meals = db.define("Meals", {
 });
 //create Users Users foreign key for meal
 Users.hasOne(Meals);
-// Meals.belongsTo(Users);
+Meals.belongsTo(Users);
 
 
 var Restaurants = db.define("Restaurants", {
@@ -70,39 +70,39 @@ var Restaurants = db.define("Restaurants", {
 
 //create restaurant foreign key for meal
 Restaurants.hasOne(Meals);
-// Meals.belongsTo(Restaurants);
+Meals.belongsTo(Restaurants);
 
-var Genre = db.define("Genre", {
+var Genres = db.define("Genres", {
   name: {
     type: Sequelize.STRING,
     allowNull: false
   }
 });
 
-Restaurants.hasOne(Genre);
-Genre.belongsTo(Restaurants);
-
+Genres.hasOne(Restaurants);
+Restaurants.belongsTo(Genres);
 
 var Attendees = db.define("Attendees", {
 
 });
 
-Users.hasOne(Attendees);
-// Attendees.belongsTo(Users);
-Meals.hasOne(Attendees);
-// Attendees.belongsTo(Meals);
+Users.belongsToMany(Meals, {through: 'Attendees'});
+Meals.belongsToMany(Users, {through: 'Attendees'});
+
+
+
 
 // Users.drop({force: true});
 // Meals.drop({force: true});
 // Restaurants.drop({force: true});
-// Genre.drop({force: true});
-// Attendees.drop({force: true});
+// Genres.drop({force: true});
+//Attendees.drop({force: true});
 
-Users.sync({force: true});
-Meals.sync({force: true});
-Restaurants.sync({force: true});
-Genre.sync({force: true});
-Attendees.sync({force: true});
+Users.sync();
+Meals.sync();
+Restaurants.sync();
+Genres.sync();
+Attendees.sync();
 
 exports.Meals = Meals;
 exports.Users = Users;
