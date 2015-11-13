@@ -60,18 +60,3 @@
     }
 }
 })();
-
-/** Yelp API Info below
-
-Consumer key
-TAPaLdRaLTExD0vJ18UMtA
-
-Consumer Secret
-Msd-D6cB8c33A-o_ahKYgU-kGHc
-
-Token	1vsO2vfZr6MMWdSpWKZGXsgoX2jaXHbJ
-
-Token Secret
-s2KdohduLvVsarrrJNFilKfoFe8
-
-**/
