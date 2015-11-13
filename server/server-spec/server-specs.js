@@ -3,66 +3,74 @@ var assert = require('assert');
 var Mocha = require('mocha');
 var expect = require('chai').expect;
 var Sequelize = require("sequelize");
+var database = require('./../services/db');
 
-describe("Persistent Node Chat Server", function() {
-  
-  var dbConnection;
+describe("Meals and User Insertion Correct", function() {
 
-  beforeEach(function(done) {
-    dbConnection = mysql.createConnection({
-      user: "root",
-      password: "",
-      database: "chat"
-    });
-    dbConnection.connect();
-
-
-    var tablename = "messages";
+  it("Should insert new user to user database", function(done) {
+      //ensure that result gives us back expected post, like meal description
+    request({method: "POST", uri: "http://127.0.0.1:4568/api/users", json: {name: "Anna"}});
     
-    /* Empty the db table before each test so that multiple tests
-     * (or repeated runs of the tests) won't screw each other up: */
-    dbConnection.query("truncate " + tablename, done);
-  });
-
-  afterEach(function() {
-    dbConnection.end();
-  });
-
-  it("Should insert posted messages to the DB", function(done) {
-    // Post the user to the chat server.
-    request({ method: "POST",
-              uri: "http://127.0.0.1:3000/classes/users",
-              json: { username: "Valjean" }
-    }, function () {
-      // Post a message to the node chat server:
-      request({ method: "POST",
-              uri: "http://127.0.0.1:3000/classes/messages",
-              json: {
-                username: "Valjean",
-                message: "In mercy's name, three days is all I need.",
-                roomname: "Hello"
-              }
-      }, function () {
-        // Now if we look in the database, we should find the
-        // posted message there.
-
-        // TODO: You might have to change this test to get all the data from
-        // your message table, since this is schema-dependent.
-        var queryString = "SELECT * FROM messages";
-        var queryArgs = [];
-
-        dbConnection.query(queryString, queryArgs, function(err, results) {
-          // Should have one result:
-          expect(results.length).to.equal(1);
-
-          // TODO: If you don't have a column named text, change this test.
-          expect(results[0].text).to.equal("In mercy's name, three days is all I need.");
-
-          done();
-        });
+    var query = function () {
+      database.User.findOne({ firstName: "Anna" })
+      .then(function (users) {
+        console.log('users return obj in test 1:', users);
+        expect(users.name)to.equal('Anna');
       });
-    });
+    }
+
   });
 
-  
+  it("Should insert new meal to database", function(done) {
+    // request({method: "POST", uri: "http://127.0.0.1:4568/api/users", json: {name: "Anna"}});
+    request({method: "POST", uri: "http://127.0.0.1:4568/api/meals", json: {date: new Date(), time: new Date(), attendees: 5, description: "new meal", user: "Anna"}}, function);
+
+    //query the Meals database for where the desciption is "new meal" and check if the attendees is 5
+    var query = function () {
+      database.Meals.findOne({ description: "new meal" })
+      .then(function (users) {
+        //check what console.logging
+        console.log('meals return object in test 2:', users);
+        expect(users.attendees)to.equal(5);
+      });
+    };
+
+  });
+
 });
+
+describe("Meals and User Insertion Correct", function() {
+
+  it("Should insert new user to user database", function(done) {
+      //ensure that result gives us back expected post, like meal description
+    request({method: "POST", uri: "http://127.0.0.1:4568/api/users", json: {name: "Anna"}});
+    
+    var query = function () {
+      database.User.findOne({ firstName: "Anna" })
+      .then(function (users) {
+        console.log('users return obj in test 1:', users);
+        expect(users.name)to.equal('Anna');
+      });
+    }
+
+  });
+
+  it("Should insert new meal to database", function(done) {
+    // request({method: "POST", uri: "http://127.0.0.1:4568/api/users", json: {name: "Anna"}});
+    request({method: "POST", uri: "http://127.0.0.1:4568/api/meals", json: {date: new Date(), time: new Date(), attendees: 5, description: "new meal", user: "Anna"}}, function);
+
+    //query the Meals database for where the desciption is "new meal" and check if the attendees is 5
+    var query = function () {
+      database.Meals.findOne({ description: "new meal" })
+      .then(function (users) {
+        //check what console.logging
+        console.log('meals return object in test 2:', users);
+        expect(users.attendees)to.equal(5);
+      });
+    };
+
+  });
+
+});
+
+

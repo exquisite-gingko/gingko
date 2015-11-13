@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "jscs ./",
-    "start": "node server/server.js"
+    "start": "nodemon server/server.js"
   },
   "pre-commit": "lint",
   "repository": {
@@ -25,13 +25,19 @@
     "chai": "^3.4.1",
     "cors": "^2.7.1",
     "express": "^4.13.3",
+    "express-route": "^0.1.4",
     "grunt": "^0.4.5",
     "grunt-contrib-concat": "^0.5.1",
     "grunt-contrib-uglify": "^0.10.1",
     "grunt-mocha-test": "^0.12.7",
     "mocha": "^2.3.3",
     "morgan": "^1.6.1",
+    "pg": "^4.4.3",
+    "pg-hstore": "^2.3.2",
     "request": "^2.65.0",
     "sequelize": "^3.13.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.8.1"
   }
 }

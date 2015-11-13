@@ -4,18 +4,18 @@ var Sequelize = require("sequelize");
 
 
 
-var db = new Sequelize("TableSurf", "root", "", {
+var db = new Sequelize("tablesurfer", "admin", "admin", {
   dialect: "postgres", // or 'sqlite', mysql', 'mariadb'
-  // port:    3306, // or 5432 (for postgres)
+  port: 5432 //(for postgres)
 });
 
-db.authenticate().complete(function(err) {
-  if (!!err) {
-    console.log('Unable to connect to the database:', err)
-  } else {
-    console.log('Connection has been established successfully.')
-  }
-});
+// .authenticate().complete(function(err) {
+//   if (!!err) {
+//     console.log('Unable to connect to the database:', err)
+//   } else {
+//     console.log('Connection has been established successfully.')
+//   }
+// });
 
 var Users = db.define("Users", {
   //here we will have to figure out the data from facebook on authentication
@@ -26,10 +26,10 @@ var Users = db.define("Users", {
   lastName: {
     type: Sequelize.STRING,
     allowNull: false
-  },
-  photo: {
-    //lookup datatype for sequelize
   }
+  // photo: {
+  //   //lookup datatype for sequelize
+  // }
 });
 
 var Meals = db.define("Meals", {
@@ -42,17 +42,25 @@ var Meals = db.define("Meals", {
     type: Sequelize.DATE,
     allowNull: false
   },
-  attendees: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
   description: {
     type: Sequelize.STRING,
     allowNull: false
   }
 });
-//create user foreign key for meal
-Users.belongsTo(Meals);
+//create Users Users foreign key for meal
+// Meals.belongsTo(Users);
+// Users.belongsTo(Meals);
+// Meals.hasMany(Users);
+// Meals.hasMany(Users, {foreignKey: 'id'});
+// Users.belongsTo(Meals, {foreignKey: 'id'});
+// Users.hasMany(Meals, { as: 'Host'});
+// Meals.belongsTo(Users, { as: 'Host'});
+// User.belongsTo(Meals);
+
+// var Atendees = db.define("Atendees", {
+//   //foreign key for event
+//   //foreign keys for users
+// });
 
 var Restaurants = db.define("Restaurants", {
   name: {
@@ -82,4 +90,10 @@ var Genre = db.define("Genre", {
 
 Genre.belongsTo(Meals);
 
+Users.sync({force: true});
+Meals.sync({force: true});
+// Restaurants.sync();
+// Genre.sync();
+
 exports.Meals = Meals;
+exports.Users = Users;
