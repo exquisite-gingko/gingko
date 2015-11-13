@@ -62,7 +62,6 @@ var Restaurants = db.define("Restaurants", {
     type: Sequelize.STRING,
     allowNull: true
   }
-  //Do we want to add a city foreign key or zip code?
 });
 
 //create restaurant foreign key for meal
