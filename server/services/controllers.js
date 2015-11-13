@@ -5,7 +5,7 @@ module.exports = {
     get: function (req, res) {
       database.User.findAll().then(function (users) {
         res.json(users);
-      })
+      });
     },
     post: function (req, res) {
       database.User.create({
@@ -21,23 +21,27 @@ module.exports = {
     get: function (req, res) {
       database.Meals.findAll({include: [database.User]}).then(function (meals) {
         res.json(meals);
-      })
+      });
     },
-    post: function (req, res) {
-      database.User.findOrCreate({where: {firstName: req.body.firstName, lastName: req.body.lastName}})
+
+    //---------------------------refactored this moring---------------------------------------------//
+    post: function (data) {
+      return database.User.find({where: {firstName: data.firstName, lastName: data.lastName}})
         .then(function (user) {
-          database.Meals.create({
-            date: req.body.date,
-            time: req.body.time,
-            attendees: req.body.attendees,
-            description: req.body.description,
+          return database.Meals.create({
+            date: data.date,
+            time: data.time,
+            description: data.description,
             userId: user.id
           }).then(function (message) {
-            res.sendStatus(201);
+            //CHECK MESSAGE FORMAT
+            return message;
           });
+
         });
+      
     }
   },
   restaurants: {},
-  genre: {}  
-}
+  genre: {}
+};
