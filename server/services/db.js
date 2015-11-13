@@ -98,11 +98,7 @@ Meals.belongsToMany(Users, {through: 'Attendees'});
 // Genres.drop({force: true});
 //Attendees.drop({force: true});
 
-Users.sync();
-Meals.sync();
-Restaurants.sync();
-Genres.sync();
-Attendees.sync();
+db.sync({force: true});
 
 exports.Meals = Meals;
 exports.Users = Users;
