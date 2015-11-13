@@ -4,6 +4,7 @@ var morgan = require('morgan');
 var cors = require('cors');
 var dbController = require('./services/controllers');
 var path = require('path');
+var passport = require('passport');
 
 // require the routes file
 var inRouter = require('./routes/in');
@@ -22,6 +23,8 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use('/api/in', inRouter);
 app.use('/api/out', outRouter);
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(express.static(path.join(__dirname, '/../client')));
 
