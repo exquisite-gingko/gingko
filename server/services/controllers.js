@@ -24,17 +24,21 @@ module.exports = {
       })
     },
     post: function (req, res) {
-      database.Users.find({where: {firstName: req.body.firstName, lastName: req.body.lastName}})
+      database.Users.findOrCreate({where: {firstName: req.body.firstName, lastName: req.body.lastName}})
         .then(function (user) {
-          database.Meals.create({
-            date: req.body.date,
-            time: req.body.time,
-            attendees: req.body.attendees,
-            description: req.body.description,
-            userId: user.id
-          }).then(function (message) {
-            res.sendStatus(201);
-          });
+          database.Restaurants.findOrCreate({where: {name: req.body.restaurant}})
+            .then(function (restaurant) {
+              database.Meals.create({
+                date: req.body.date,
+                time: req.body.time,
+                description: req.body.description,
+                //user.id and restaurant.id are not working as they are expected to--what is up with sequelize?
+                UserId: user[0].dataValues.id,
+                RestaurantId: restaurant[0].dataValues.id
+              }).then(function (message) {
+                res.sendStatus(201);
+              });
+            })
         });
     }
   },

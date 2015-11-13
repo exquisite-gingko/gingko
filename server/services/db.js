@@ -27,9 +27,6 @@ var Users = db.define("Users", {
     type: Sequelize.STRING,
     allowNull: false
   }
-  // photo: {
-  //   //lookup datatype for sequelize
-  // }
 });
 
 var Meals = db.define("Meals", {
@@ -55,15 +52,15 @@ Meals.belongsTo(Users);
 var Restaurants = db.define("Restaurants", {
   name: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: true
   },
   address: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: true
   },
   contact: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: true
   }
   //Do we want to add a city foreign key or zip code?
 });
@@ -89,7 +86,8 @@ var Attendees = db.define("Attendees", {
 Users.belongsToMany(Meals, {through: 'Attendees'});
 Meals.belongsToMany(Users, {through: 'Attendees'});
 
-db.sync();
+db.sync({force: true});
 
 exports.Meals = Meals;
 exports.Users = Users;
+exports.Restaurants = Restaurants;
