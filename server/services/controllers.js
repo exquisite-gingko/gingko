@@ -24,7 +24,7 @@ module.exports = {
       })
     },
     post: function (req, res) {
-      database.Users.findOrCreate({where: {firstName: req.body.firstName, lastName: req.body.lastName}})
+      database.Users.find({where: {firstName: req.body.firstName, lastName: req.body.lastName}})
         .then(function (user) {
           database.Meals.create({
             date: req.body.date,
