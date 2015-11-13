@@ -6,7 +6,9 @@ angular.module('tablesurfer', [
   'ngMaterial'
 ])
 .config(function ($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('home');
+
+  // FIXME: From David - change it back to home after routing works
+  $urlRouterProvider.otherwise('/');
 
   $stateProvider
     .state('home', {

@@ -8,6 +8,7 @@ var path = require('path');
 // require the routes file
 var inRouter = require('./routes/in');
 var outRouter = require('./routes/out');
+var path = require('path');
 
 inRouter = inRouter(dbController);
 outRouter = outRouter(dbController)
