@@ -50,11 +50,11 @@ var Meals = db.define("Meals", {
 //create Users Users foreign key for meal
 // Meals.belongsTo(Users);
 // Users.belongsTo(Meals);
-// Meals.hasMany(Users, through)
+// Meals.hasMany(Users);
 // Meals.hasMany(Users, {foreignKey: 'id'});
 // Users.belongsTo(Meals, {foreignKey: 'id'});
-Users.hasMany(Meals, { as: 'Host'});
-Meals.belongsTo(Users, { as: 'Host'});
+// Users.hasMany(Meals, { as: 'Host'});
+// Meals.belongsTo(Users, { as: 'Host'});
 // User.belongsTo(Meals);
 
 // var Atendees = db.define("Atendees", {
@@ -90,8 +90,8 @@ var Genre = db.define("Genre", {
 
 Genre.belongsTo(Meals);
 
-Users.sync();
-Meals.sync();
+Users.sync({force: true});
+Meals.sync({force: true});
 // Restaurants.sync();
 // Genre.sync();
 
