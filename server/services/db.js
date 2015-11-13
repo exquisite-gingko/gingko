@@ -89,15 +89,6 @@ var Attendees = db.define("Attendees", {
 Users.belongsToMany(Meals, {through: 'Attendees'});
 Meals.belongsToMany(Users, {through: 'Attendees'});
 
-
-
-
-// Users.drop({force: true});
-// Meals.drop({force: true});
-// Restaurants.drop({force: true});
-// Genres.drop({force: true});
-//Attendees.drop({force: true});
-
 db.sync({force: true});
 
 exports.Meals = Meals;
