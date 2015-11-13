@@ -1,3 +1,3 @@
-// TODO: Please add 'tablesurfer.services' once services have been created
+// TODO: Please add 'app.services' once services have been created
 
-angular.module('tablesurfer', ['ui.router', 'ngMaterial']);
+angular.module('app', ['ui.router', 'ngMaterial']);

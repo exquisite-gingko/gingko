@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('tablesurfer')
+  angular.module('app')
   .controller('HomeCtrl', HomeCtrl);
 
   // if factories are needed, inject here
