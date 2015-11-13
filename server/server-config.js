@@ -11,8 +11,11 @@ var inRouter = require('./routes/in');
 var outRouter = require('./routes/out');
 var path = require('path');
 
-inRouter = inRouter(dbController);
-outRouter = outRouter(dbController)
+// require isLoggedIn method so we can use it in routes to check if user is logged in
+var isLoggedIn = require('./services/isLoggedIn');
+
+inRouter = inRouter(dbController, passport, isLoggedIn);
+outRouter = outRouter(dbController, passport, isLoggedIn);
 
 var bodyParser = require('body-parser');
 
