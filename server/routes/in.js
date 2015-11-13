@@ -18,7 +18,7 @@ module.exports = function(dbController) {
       res.status(400).send('wrong data passed to routes');
     }
        
-    dbControllers.meals.post(meal)
+    dbController.meals.post(meal)
     .then(function(data){
       res.status(200).send(data);
     })
@@ -37,14 +37,29 @@ module.exports = function(dbController) {
     dbController.meals.get(req, res);
   });
 
-  router.post('/join', function (req, res) {
-    //route to join an event
+  router.post('/meal/join', function(req, res) {
+    //user joining an event
+    console.log('in route');
+    var packetOfJoiningData = {};
+    packetOfJoiningData.firstName = req.body.firstName;
+    packetOfJoiningData.lastName = req.body.lastName;
+    packetOfJoiningData.eventDetails = req.body.description;
+    console.log('packet to send', packetOfJoiningData);
+    dbController.user.joinMeal(packetOfJoiningData)
+    .then(function(data) {
+      res.status(200).send(data);
+    })
+    .catch(function(err) {
+      console.log('err posting meal data:', err);
+      res.status(500).send(err);
+    });
+
   });
 
   //testing purposes only?? Do not thing that this is relevant to our app currenly?
   router.get('/user', function(req, res) {
     //get the user details from the database
-    dbControllers.user.get(req, res);
+    dbController.user.get(req, res);
   });
 
   router.post('/user', function(req, res) {

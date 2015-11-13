@@ -1,4 +1,4 @@
-  var database = require('./db');
+var database = require('./db');
 
 module.exports = {
   user: {
@@ -20,7 +20,8 @@ module.exports = {
     
     //for a user joining a meal
     joinMeal: function(data) {
-      return database.Meal.find({ where: {firstName: data.firstName, lastName: data.lastName} })
+      console.log('in join meal', data);
+      return database.Users.find({ where: {firstName: data.firstName, lastName: data.lastName} })
       .then(function(user) {
         //this should get the user data that matched the user details passed
         var user_id = user.id;
@@ -28,16 +29,23 @@ module.exports = {
         .then(function(meal) {
           //meal should be an object containing the table input for this meal
           var meal_id = meal.id;
+          console.log('data being made');
           return database.Atendees.create({
             user_id: user_id,
             meal_id: meal_id
+          })
+          .then(function(attendee) {
+            console.log('data added')
+            return attendee;
           });
         });
       });
     }
 
   },
+
   meals: {
+
     get: function (req, res) {
       database.Meals.findAll().then(function (meals) {
         res.json(meals);
