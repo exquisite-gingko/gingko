@@ -3,7 +3,8 @@
 
 angular.module('tablesurfer', [
   'ui.router',
-  'ngMaterial'
+  'ngMaterial',
+  'Home'
 ])
 .config(function ($stateProvider, $urlRouterProvider) {
 
@@ -13,7 +14,8 @@ angular.module('tablesurfer', [
   $stateProvider
     .state('home', {
       url: '/home',
-      templateUrl: 'home/home.html'
-      // controller: 'HomeController' FIXME: Need a home controller
-    })
+      templateUrl: 'app/home/home.html',
+      controller: 'HomeController'
+    });
+
 })
