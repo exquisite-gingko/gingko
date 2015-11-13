@@ -6,9 +6,9 @@
 
   SearchCtrl.$inject = ['$http', '$q', '$log', '$window'];
 
-  function SearchCtrl() {
+  function SearchCtrl($http, $q, $log, $window) {
     // TODO: Please verify that this matches the refactored style
-    
+
     var self = this;
     // below are settings for the md-autocomplete directive
     self.simulateQuery = false;
@@ -16,24 +16,25 @@
     self.selectedItem = undefined;
 
     self.querySearch = function(query) {
-      // var key = '&key=AIzaSyApeZQpRsdiKL3exCpZtFAsuRdRtHkti70';
-      // var booksUrl = 'https://www.googleapis.com/books/v1/volumes?printType=books&q=' + query + key;
+      var path = '/api/out/yelp';
 
-      // FIXME: See Yelp API info below
-
-      return $http({method: 'GET', url: yelpURL}).
+      return $http({
+        url: path + '?term=' + query,
+        method: 'GET',
+      }).
         then(function(response) {
           self.status = response.status;
-          self.iteratee = response.data.items;
+          self.iteratee = response.data;
           self.data = [];
           _.each(self.iteratee, function(item) {
-            // if (item.volumeInfo.title && item.volumeInfo.authors && item.volumeInfo.industryIdentifiers && item.volumeInfo.imageLinks.thumbnail && item.volumeInfo.publishedDate ) {
+            if (!item.is_closed && item.rating && item.name && item.url && item.categories && item.phone && item.location.display_address) {
               self.data.push({
-                // 'title': item.volumeInfo.title,
-                // 'author': item.volumeInfo.authors,
-                // 'isbn': item.volumeInfo.industryIdentifiers,
-                // 'image': item.volumeInfo.imageLinks.thumbnail,
-                // 'publishdate': item.volumeInfo.publishedDate
+                'rating': item.rating,
+                'name': item.name,
+                'url': item.url,
+                'categories': item.categories,
+                'phone': item.phone,
+                'display_address': item.location.display_address,
               })
             }
           });
@@ -59,18 +60,3 @@
     }
 }
 })();
-
-/** Yelp API Info below
-
-Consumer key
-TAPaLdRaLTExD0vJ18UMtA
-
-Consumer Secret
-Msd-D6cB8c33A-o_ahKYgU-kGHc
-
-Token	1vsO2vfZr6MMWdSpWKZGXsgoX2jaXHbJ
-
-Token Secret
-s2KdohduLvVsarrrJNFilKfoFe8
-
-**/
