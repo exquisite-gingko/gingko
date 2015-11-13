@@ -15,7 +15,7 @@
            <span flex></span>
            <md-tabs md-selected="currentTab" md-stretch-tabs="always" class="md-primary md-hue-2">
                <md-tab ui-sref="home" id="home/home.html" aria-controls="Tab 1">
-                   <md-tab-label>Shelf</md-tab-label>
+                   <md-tab-label>Home</md-tab-label>
                </md-tab>
            </md-tabs>
        </div>
@@ -40,8 +40,10 @@
     <!-- bower end -->
 
     <!-- js inject start -->
-    <script src="app/home/home.js" charset="utf-8"></script>
-    <script src="app/app.js" charset="utf-8"></script>
+    <script src="app/app.module.js" charset="utf-8"></script>
+    <script src="app/app.routes.js" charset="utf-8"></script>
+    <script src="app/home/home.controller.js" charset="utf-8"></script>
+    <script src="app/home/home.factory.js" charset="utf-8"></script>
     <!-- js inject end -->
 
   </body>
