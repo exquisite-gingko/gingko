@@ -4,7 +4,6 @@ module.exports = {
 
   Meal : function(body) {
     var obj = {};
-
     //dates and times to be formatted using moment.js checker thing
     obj.date = body.date;
     obj.time = body.time;
@@ -15,6 +14,8 @@ module.exports = {
       return false;
     }
 
+    obj.restaurant = body.restaurant;
+    
     if (typeof body.firstName === "string" && body.firstName.length > 0) {
       obj.firstName = body.firstName.toLowerCase();
     } else {
@@ -27,8 +28,19 @@ module.exports = {
       return false;
     }
 
-    return obj;
 
+    return obj;
+  },
+
+  Join : function(body) {
+    this.firstName = body.firstName;
+    this.lastName = body.lastName;
+    this.description = body.description;
+  },
+
+  addUser: function(body) {
+    this.firstName = body.firstName;
+    this.lastName = body.lastName;
   }
   
 };
