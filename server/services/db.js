@@ -79,7 +79,6 @@ Genres.hasOne(Restaurants);
 Restaurants.belongsTo(Genres);
 
 var Attendees = db.define("Attendees", {
-
 });
 
 Users.belongsToMany(Meals, {through: 'Attendees'});

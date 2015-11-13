@@ -48,10 +48,7 @@ module.exports = {
         .then(function (meals) {
           // res.json(meals);
           return Promise.map(meals, function(meal) {
-            console.log("meal is: ", meal);
             return meal.getUsers().then(function(result) {
-              console.log('attendees: ', result);
-              meal['Attendees'] = result;
               var mealObj = {meal: meal, attendees: result};
               return mealObj;
             })
