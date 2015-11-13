@@ -1,15 +1,35 @@
 var express = require('express');
 var request = require('request');
+var classes = require('./../classes/classes');
 
 
 module.exports = function(dbControllers) {
+
+//------------------------------------------------------//
 
   var router = express.Router();
 
   //posting to the query file which will post to the meals database details of a new event
   router.post('/meals', function(req, res) {
-    dbControllers.meals.post(req, res);
+
+    var meal = classes.Meal(req.body);
+
+    if (!meal) {
+      res.status(400).send('wrong data passed to routes');
+    }
+       
+    dbControllers.meals.post(meal)
+    .then(function(data){
+      res.status(200).send(data);
+    })
+    .catch(function(err) {
+      console.log('err posting meal data:', err);
+      res.status(500).send(err);
+    });
+    
   });
+
+//------------------------------------------------------//
 
   router.get('/seeMeals', function(req, res) {
     //request on loading the main page to see the upcoming meals
