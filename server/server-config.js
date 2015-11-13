@@ -3,7 +3,9 @@ var express = require('express');
 var morgan = require('morgan');
 var cors = require('cors');
 var dbController = require('./services/controllers');
-// require the routes file 
+var path = require('path');
+
+// require the routes file
 var inRouter = require('./routes/in');
 var outRouter = require('./routes/out');
 var path = require('path');
