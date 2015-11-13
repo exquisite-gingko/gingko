@@ -3,7 +3,7 @@
   "description": "",
   "main": "/server/server.js",
   "license": "ISC",
-  "homepage": "https://github.com/tsaiDavid/gingko",
+  "homepage": "https://github.com/exquisite-gingko/gingko",
   "moduleType": [],
   "ignore": [
     "**/.*",
