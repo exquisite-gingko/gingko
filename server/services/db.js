@@ -48,19 +48,9 @@ var Meals = db.define("Meals", {
   }
 });
 //create Users Users foreign key for meal
+Users.hasOne(Meals);
 // Meals.belongsTo(Users);
-// Users.belongsTo(Meals);
-// Meals.hasMany(Users);
-// Meals.hasMany(Users, {foreignKey: 'id'});
-// Users.belongsTo(Meals, {foreignKey: 'id'});
-// Users.hasMany(Meals, { as: 'Host'});
-// Meals.belongsTo(Users, { as: 'Host'});
-// User.belongsTo(Meals);
 
-// var Atendees = db.define("Atendees", {
-//   //foreign key for event
-//   //foreign keys for users
-// });
 
 var Restaurants = db.define("Restaurants", {
   name: {
@@ -79,7 +69,8 @@ var Restaurants = db.define("Restaurants", {
 });
 
 //create restaurant foreign key for meal
-Restaurants.belongsTo(Meals);
+Restaurants.hasOne(Meals);
+// Meals.belongsTo(Restaurants);
 
 var Genre = db.define("Genre", {
   name: {
@@ -88,12 +79,30 @@ var Genre = db.define("Genre", {
   }
 });
 
-Genre.belongsTo(Meals);
+Restaurants.hasOne(Genre);
+Genre.belongsTo(Restaurants);
+
+
+var Attendees = db.define("Attendees", {
+
+});
+
+Users.hasOne(Attendees);
+// Attendees.belongsTo(Users);
+Meals.hasOne(Attendees);
+// Attendees.belongsTo(Meals);
+
+// Users.drop({force: true});
+// Meals.drop({force: true});
+// Restaurants.drop({force: true});
+// Genre.drop({force: true});
+// Attendees.drop({force: true});
 
 Users.sync({force: true});
 Meals.sync({force: true});
-// Restaurants.sync();
-// Genre.sync();
+Restaurants.sync({force: true});
+Genre.sync({force: true});
+Attendees.sync({force: true});
 
 exports.Meals = Meals;
 exports.Users = Users;
