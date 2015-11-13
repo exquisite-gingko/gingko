@@ -3,12 +3,12 @@ var database = require('./db');
 module.exports = {
   user: {
     get: function (req, res) {
-      database.User.findAll().then(function (users) {
+      database.Users.findAll().then(function (users) {
         res.json(users);
       });
     },
     post: function (req, res) {
-      database.User.create({
+      database.Users.create({
         firstName: req.body.firstName,
         lastName: req.body.lastName
       }).then(function (message) {
@@ -19,7 +19,7 @@ module.exports = {
   },
   meals: {
     get: function (req, res) {
-      database.Meals.findAll({include: [database.User]}).then(function (meals) {
+      database.Meals.findAll().then(function (meals) {
         res.json(meals);
       });
     },

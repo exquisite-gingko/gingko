@@ -3,15 +3,19 @@
 
 angular.module('tablesurfer', [
   'ui.router',
-  'ngMaterial'
+  'ngMaterial',
+  'Home'
 ])
 .config(function ($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('home');
+
+  // FIXME: From David - change it back to home after routing works
+  $urlRouterProvider.otherwise('/');
 
   $stateProvider
     .state('home', {
       url: '/home',
-      templateUrl: 'home/home.html'
-      // controller: 'HomeController' FIXME: Need a home controller
-    })
+      templateUrl: 'app/home/home.html',
+      controller: 'HomeController'
+    });
+
 })

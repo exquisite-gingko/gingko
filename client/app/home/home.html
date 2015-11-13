@@ -1,7 +1,12 @@
-<div id="home">
+<div id="home" ng-controller='HomeController'>
   <span>
-   <img src="http://pennstateelmscollection.com/images/squarecoffeetable.png" alt="" />
-   <br>
-   <img src="http://www.learnersdictionary.com/media/ld/images/legacy_print_images/surfboard.gif" alt="" />
+    <p>hello</p>
+    <p>{{restaurant}}</p>
+    <img src="http://pennstateelmscollection.com/images/squarecoffeetable.png" alt="" />
+    <br>
+    <img src="http://www.learnersdictionary.com/media/ld/images/legacy_print_images/surfboard.gif" alt="" />
   </span>
+  <div class='event-list' ng-repeat='event in events'>
+    <div>Host: {{ event.host }}</div>
+  </div>
 </div>
