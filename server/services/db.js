@@ -17,7 +17,7 @@ var db = new Sequelize("tablesurfer", "admin", "admin", {
 //   }
 // });
 
-var User = db.define("User", {
+var Users = db.define("Users", {
   //here we will have to figure out the data from facebook on authentication
   firstName: {
     type: Sequelize.STRING,
@@ -42,18 +42,25 @@ var Meals = db.define("Meals", {
     type: Sequelize.DATE,
     allowNull: false
   },
-  attendees: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
   description: {
     type: Sequelize.STRING,
     allowNull: false
   }
 });
-//create user user foreign key for meal
+//create Users Users foreign key for meal
+// Meals.belongsTo(Users);
+// Users.belongsTo(Meals);
+// Meals.hasMany(Users, through)
+// Meals.hasMany(Users, {foreignKey: 'id'});
+// Users.belongsTo(Meals, {foreignKey: 'id'});
+Users.hasMany(Meals, { as: 'Host'});
+Meals.belongsTo(Users, { as: 'Host'});
 // User.belongsTo(Meals);
-// Meals.hasMany(User); ???
+
+// var Atendees = db.define("Atendees", {
+//   //foreign key for event
+//   //foreign keys for users
+// });
 
 var Restaurants = db.define("Restaurants", {
   name: {
@@ -83,10 +90,10 @@ var Genre = db.define("Genre", {
 
 Genre.belongsTo(Meals);
 
-User.sync();
+Users.sync();
 Meals.sync();
 // Restaurants.sync();
 // Genre.sync();
 
 exports.Meals = Meals;
-exports.User = User;
+exports.Users = Users;
