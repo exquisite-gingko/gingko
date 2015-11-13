@@ -26,6 +26,10 @@ var Users = db.define("Users", {
   lastName: {
     type: Sequelize.STRING,
     allowNull: false
+  },
+  facebookId: {
+    type: Sequelize.STRING,
+    allowNull: true
   }
   // photo: {
   //   //lookup datatype for sequelize

@@ -11,7 +11,8 @@ module.exports = {
     post: function (req, res) {
       database.Users.create({
         firstName: req.body.firstName,
-        lastName: req.body.lastName
+        lastName: req.body.lastName,
+        facebookId: req.body.facebookId
       }).then(function (message) {
         console.log(message);
         res.sendStatus(201);

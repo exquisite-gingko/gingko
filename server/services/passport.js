@@ -17,5 +17,15 @@ module.exports = function (passport) {
     clientID: configAuth.facebookAuth.clientID,
     clientSecret: configAuth.facebookAuth.clientSecret,
     callbackURL: configAuth.facebookAuth.callbackURL
-  }));
+  },
+  function (token, refreshToken, profile, done) {
+    process.nextTick(function () {
+      database.Users.find({ where: {facebookId = profile.id} })
+      .then(function (user) {
+        return done(user);
+      })
+    })
+  }
+  ));
+
 };
