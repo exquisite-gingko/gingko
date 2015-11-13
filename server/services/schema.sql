@@ -1,0 +1,33 @@
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY UNIQUE NOT NULL,
+  user_name VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE meals (
+  id SERIAL PRIMARY KEY UNIQUE NOT NULL,
+  description TEXT NOT NULL,
+  date TIMESTAMPTZ default CURRENT_TIMESTAMP NOT NULL,
+  host_id INT REFERENCES users(id) NOT NULL,
+  -- attendees_id INT REFERENCES attendees(id) NOT NULL,
+  restaurant_id INT REFERENCES restaurants(id) NOT NULL
+);
+
+CREATE TABLE restaurants (
+  id SERIAL PRIMARY KEY UNIQUE NOT NULL,
+  name VARCHAR(30) NOT NULL,
+  address TEXT NOT NULL,
+  latitude TEXT NOT NULL,
+  longitude TEXT NOT NULL,
+  genre_id INT REFERENCES genres(id) NOT NULL
+);
+
+CREATE TABLE attendees (
+  id SERIAL PRIMARY KEY UNIQUE NOT NULL,
+  user_id INT REFERENCES users(id) NOT NULL,
+  meal_id INT REFERENCES meals(id) NOT NULL
+);
+
+CREATE TABLE genres (
+  id SERIAL PRIMARY KEY UNIQUE NOT NULL,
+  genre VARCHAR(30) NOT NULL
+);
