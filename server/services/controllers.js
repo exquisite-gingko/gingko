@@ -19,9 +19,10 @@ module.exports = {
   },
   meals: {
     get: function (req, res) {
-      database.Meals.findAll().then(function (meals) {
-        res.json(meals);
-      })
+      database.Meals.findAll({include: [database.Users, database.Restaurants]})
+        .then(function (meals) {
+          res.json(meals);
+        })
     },
     post: function (req, res) {
       database.Users.findOrCreate({where: {firstName: req.body.firstName, lastName: req.body.lastName}})
