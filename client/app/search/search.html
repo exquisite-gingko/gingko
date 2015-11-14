@@ -1,7 +1,7 @@
 <div id="search">
   <div ng-controller="SearchCtrl as vm" layout="column" ng-cloak>
     <md-content layout-padding layout="column">
-      <form ng-submit="$event.preventDefault(); add()">
+      <form ng-submit="$event.preventDefault(); vm.add()">
         <!-- md autocomplete settings + start -->
         <md-autocomplete
             md-selected-item="vm.selectedItem"
