@@ -28,7 +28,6 @@ module.exports = function(dbController) {
     
   });
 
-//------------------------------------------------------//
 
   router.get('/meals', function(req, res) {
     //request on loading the main page to see the upcoming meals
@@ -64,9 +63,11 @@ module.exports = function(dbController) {
 
   });
 
+
+
   router.post('/user', function(req, res) {
     
-    var newUser = new classes.addUser(req.body);
+    var newUser = new classes.AddUser(req.body);
 
     dbController.user.post(newUser)
     .then(function(data) {

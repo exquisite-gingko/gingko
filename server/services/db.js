@@ -26,10 +26,15 @@ var Users = db.define("Users", {
   lastName: {
     type: Sequelize.STRING,
     allowNull: false
+  },
+  facebookId: {
+    type: Sequelize.INTEGER,
+    allowNull: true //this may not be with every user
   }
 });
 
 var Meals = db.define("Meals", {
+  //title field
   date: {
     type: Sequelize.DATE,
     allowNull: false
@@ -62,6 +67,9 @@ var Restaurants = db.define("Restaurants", {
     type: Sequelize.STRING,
     allowNull: true
   }
+  //latitude
+  //longitude
+  //rating?
 });
 
 //create restaurant foreign key for meal
@@ -83,6 +91,8 @@ var Attendees = db.define("Attendees", {
 
 Users.belongsToMany(Meals, {through: 'Attendees'});
 Meals.belongsToMany(Users, {through: 'Attendees'});
+
+
 
 db.sync();
 

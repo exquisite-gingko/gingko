@@ -1,8 +1,12 @@
 //this is where we construct our 'packets' of data to send to our query functions
 //type check and formatting here
+
+
 module.exports = {
 
   Meal : function(body) {
+    //this is just trying an object constructor that only allows certain data and will throw an error if the data is not in this style. With more time to be implemented across the board.
+
     var obj = {};
     //dates and times to be formatted using moment.js checker thing
     obj.date = body.date;
@@ -28,7 +32,6 @@ module.exports = {
       return false;
     }
 
-
     return obj;
   },
 
@@ -38,9 +41,10 @@ module.exports = {
     this.description = body.description;
   },
 
-  addUser: function(body) {
+  AddUser: function(body) {
     this.firstName = body.firstName;
     this.lastName = body.lastName;
+    this.facebookId = body.facebookId;
   }
   
 };
