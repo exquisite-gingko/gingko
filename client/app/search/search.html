@@ -1,28 +1,28 @@
 <div id="search">
-  <div ng-controller="SearchCtrl as ctrl" layout="column" ng-cloak>
+  <div ng-controller="SearchCtrl as vm" layout="column" ng-cloak>
     <md-content layout-padding layout="column">
-      <form ng-submit="$event.preventDefault(); add()">
+      <form ng-submit="$event.preventDefault(); vm.add()">
         <!-- md autocomplete settings + start -->
         <md-autocomplete
-            md-selected-item="ctrl.selectedItem"
-            md-selected-item-change="ctrl.selectedItemChange(item)"
-            md-search-text-change="searchTextChange(ctrl.searchText)"
-            md-search-text="ctrl.searchText"
-            md-items="item in querySearch(ctrl.searchText)"
-            md-item-text="item.title"
+            md-selected-item="vm.selectedItem"
+            md-search-text="vm.searchText"
+            md-items="item in vm.querySearch(vm.searchText)"
+            md-item-text="item.name"
             md-min-length="1"
             md-floating-label="Search for a resturaunt..."
             md-menu-class="autocomplete-search">
+            <!-- md-search-text-change="searchTextChange(vm.searchText)" -->
+            <!-- md-selected-item-change="vm.selectedItemChange(item)" -->
 
-          <span md-highlight-text="ctrl.searchText">{{item.title}}</span>
+          <span md-highlight-text="vm.searchText">{{item.name}}</span>
           <!-- autocomplete display start -->
           <md-item-template>
-            <span class="item-title">
-              <span><strong> {{item.title}} </strong></span>
+            <span class="item-name">
+              <span><strong> {{item.name}} </strong></span>
             </span>
             <span class="item-metadata">
               <span class="item-metastat">
-                <span>by {{item.author[0]}}</span>
+                <span>phone {{item.phone}}</span>
               </span>
             </span>
           </md-item-template>
@@ -34,7 +34,7 @@
         </md-autocomplete>
         <!-- md autocomplete settings end -->
         <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-          <md-button class="md-raised md-primary" ng-disabled="!ctrl.selectedItem">Add</md-button>
+          <md-button class="md-raised md-primary" ng-disabled="!vm.selectedItem">Add</md-button>
         </section>
       </form>
     </md-content>
