@@ -53,14 +53,18 @@
     }
 
     self.add = function () {
-      return $http({
-        method: 'POST',
-        url: '/api/books',
-        data: self.selectedItem
-      }).then(function(res) {
-        // TODO: Need to clear out the selected area after submission
-        self.selectedItem = '';
-      })
+      console.log(self.selectedItem);
+
+      // TODO: Hook up functionality to insert selected item into DB.
+
+      // return $http({
+      //   method: 'POST',
+      //   url: '/api/books',
+      //   data: self.selectedItem
+      // }).then(function(res) {
+      //   // TODO: Need to clear out the selected area after submission
+      //   self.selectedItem = '';
+      // })
     }
 }
 })();
