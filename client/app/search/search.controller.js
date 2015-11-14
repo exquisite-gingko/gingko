@@ -27,7 +27,7 @@
           self.iteratee = response.data;
           self.data = [];
           _.each(self.iteratee, function(item) {
-            if (!item.is_closed && item.rating && item.name && item.url && item.categories && item.phone && item.location.display_address) {
+            if (!item.is_closed && item.rating && item.name && item.url && item.categories && item.phone && item.location) {
               self.data.push({
                 'rating': item.rating,
                 'name': item.name,
@@ -35,6 +35,10 @@
                 'categories': item.categories,
                 'phone': item.phone,
                 'display_address': item.location.display_address,
+                'coordinate': {
+                  lat: item.location.coordinate.latitude,
+                  lng: item.location.coordinate.longitude
+                }
               })
             }
           });
