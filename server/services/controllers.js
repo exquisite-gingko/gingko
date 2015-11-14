@@ -1,42 +1,39 @@
 var database = require('./db');
+var Promise = require('bluebird');
 
 module.exports = {
   user: {
-    get: function (req, res) {
-      database.Users.findAll().then(function (users) {
-        res.json(users);
+
+    get: function () {
+      return database.Users.findAll()
+      .then(function (users) {
+        return users;
       });
     },
 
-    post: function (req, res) {
-      database.Users.create({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        facebookId: req.body.facebookId
+    post: function (data) {
+      return database.Users.create({
+        firstName: data.firstName,
+        lastName: data.lastName,
+        facebookId: data.facebookId
       }).then(function (message) {
-        console.log(message);
-        res.sendStatus(201);
+        return message;
       });
     },
     
     //for a user joining a meal
     joinMeal: function(data) {
-      console.log('in join meal', data);
       return database.Users.find({ where: {firstName: data.firstName, lastName: data.lastName} })
       .then(function(user) {
         //this should get the user data that matched the user details passed
-        var user_id = user.id;
         return database.Meals.find({ where: {description: data.description} })
         .then(function(meal) {
           //meal should be an object containing the table input for this meal
-          var meal_id = meal.id;
-          console.log('data being made');
-          return database.Atendees.create({
-            user_id: user_id,
-            meal_id: meal_id
+          return database.Attendees.create({
+            UserId: user.id,
+            MealId: meal.id
           })
           .then(function(attendee) {
-            console.log('data added')
             return attendee;
           });
         });
@@ -48,28 +45,45 @@ module.exports = {
   meals: {
 
     get: function (req, res) {
-      database.Meals.findAll().then(function (meals) {
-        res.json(meals);
-      });
+      database.Meals.findAll({ include: [database.Users, database.Restaurants]})
+        .then(function (meals) {
+          // res.json(meals);
+          return Promise.map(meals, function(meal) {
+            return meal.getUsers().then(function(result) {
+              var mealObj = {meal: meal, attendees: result};
+              return mealObj;
+            })
+          })
+          // meals[0].getUsers().then(function(result) {
+          //   res.json(result);
+            
+          // })
+          // console.log(meals);
+          // var meals = meals;
+
+        }).then(function(meals) {
+          res.json(meals);
+        })
     },
 
-    //---------------------------refactored this moring---------------------------------------------//
     post: function (data) {
-      return database.User.find({where: {firstName: data.firstName, lastName: data.lastName}})
-
+      return database.Users.findOrCreate({where: {firstName: data.firstName, lastName: data.lastName}})
         .then(function (user) {
-          return database.Meals.create({
-            date: data.date,
-            time: data.time,
-            description: data.description,
-            userId: user.id
-          }).then(function (message) {
-            //CHECK MESSAGE FORMAT
-            return message;
-          });
-
+          console.log("rest name: ",data.restaurant);
+          return database.Restaurants.findOrCreate({where: {name: data.restaurant}})
+            .then(function (restaurant) {
+              return database.Meals.create({
+                date: data.date,
+                time: data.time,
+                description: data.description,
+                //user.id and restaurant.id are not working as they are expected to--what is up with sequelize?
+                UserId: user[0].dataValues.id,
+                RestaurantId: restaurant[0].dataValues.id
+              }).then(function (message) {
+                return message;
+              });
+            })
         });
-
     }
   },
   restaurants: {},
