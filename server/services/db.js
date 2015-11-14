@@ -28,7 +28,7 @@ var Users = db.define("Users", {
     allowNull: false
   },
   facebookId: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     allowNull: true //this may not be with every user
   }
 });

@@ -3,7 +3,7 @@ var request = require('request');
 var classes = require('./../classes/classes');
 
 
-module.exports = function(dbController) {
+module.exports = function(dbController, passport, isLoggedIn) {
 
   var router = express.Router();
 
