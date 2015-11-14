@@ -59,7 +59,7 @@
 
       // return $http({
       //   method: 'POST',
-      //   url: '/api/books',
+      //   url: '/api/in/meals',
       //   data: self.selectedItem
       // }).then(function(res) {
       //   // TODO: Need to clear out the selected area after submission
