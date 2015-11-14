@@ -9,7 +9,6 @@ var Promise = require('bluebird');
 var request_yelp = function(set_parameters, callback) {
   // set_parameters: object with params to search
   // callback: callback(error, response, body)
-
   var httpMethod = 'GET';
   var url = 'http://api.yelp.com/v2/search';
 
@@ -46,12 +45,20 @@ var request_yelp = function(set_parameters, callback) {
 
 };
 
-module.exports = function(db) {
+module.exports = function(db, passport, isLoggedIn) {
 
   var router = express.Router();
 
-  router.get('/login', function(req, res) {
-    //query the facebook api
+  router.get('/login', passport.authenticate('facebook', { scope: 'email' }));
+
+  router.get('/login/callback', passport.authenticate('facebook', {
+    successRedirect: '/',
+    failureRedirect: '/'
+  }));
+
+  router.get('/logout', function (req, res) {
+    req.logout();
+    res.redirect('/');
   });
 
   router.get('/yelp', function(req, res) {
