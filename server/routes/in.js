@@ -10,6 +10,8 @@ module.exports = function(dbController, passport, isLoggedIn) {
 //------------------------------------------------------//
   //posting to the query file which will post to the meals database details of a new event
   router.post('/meals', function(req, res) {
+
+    console.log('--------------in routes', req.body.firstName);
     //make an object of all the values that we need
     var meal = classes.Meal(req.body);
     //if the values are not valid then send err
@@ -20,15 +22,15 @@ module.exports = function(dbController, passport, isLoggedIn) {
     dbController.meals.post(meal)
     .then(function(data){
       res.status(200).send(data);
-    })
-    .catch(function(err) {
-      console.log('err posting meal data:', err);
-      res.status(500).send(err);
     });
+    // .catch(function(err) {
+    //   console.log('err posting meal data:', err);
+    //   res.status(500).send(err);
+    // });
     
   });
 
-
+//------------------------------------------------------//
   router.get('/meals', function(req, res) {
     //request on loading the main page to see the upcoming meals
     dbController.meals.get(req, res);
@@ -49,7 +51,8 @@ module.exports = function(dbController, passport, isLoggedIn) {
 
   });
 
-  //testing purposes only?? Do not thing that this is relevant to our app currenly?
+//------------------------------------------------------//
+  //testing purposes only?? Do not thing that this is relevant to our app currenly
   router.get('/user', function(req, res) {
     //get the user details from the database
     dbController.user.get()
@@ -64,7 +67,7 @@ module.exports = function(dbController, passport, isLoggedIn) {
   });
 
 
-
+//------------------------------------------------------//
   router.post('/user', function(req, res) {
     
     var newUser = new classes.AddUser(req.body);

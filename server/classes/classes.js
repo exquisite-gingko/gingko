@@ -32,6 +32,9 @@ module.exports = {
       return false;
     }
 
+    obj.address = body.address;
+    obj.contact = body.contact;
+
     return obj;
   },
 
