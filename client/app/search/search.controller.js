@@ -4,9 +4,9 @@
   angular.module('app')
   .controller('SearchCtrl', SearchCtrl);
 
-  SearchCtrl.$inject = ['$http', '$q', '$log', '$window', 'homeFactory'];
+  SearchCtrl.$inject = ['$http', '$q', '$log', '$window', 'searchFactory'];
 
-  function SearchCtrl($http, $q, $log, $window, homeFactory) {
+  function SearchCtrl($http, $q, $log, $window, searchFactory) {
     // TODO: Please verify that this matches the refactored style
 
     var self = this;
@@ -57,7 +57,7 @@
 
     self.add = function () {
 
-      homeFactory.postMeal(self.meal);
+      searchFactory.postMeal(self.meal);
 
     };
 
