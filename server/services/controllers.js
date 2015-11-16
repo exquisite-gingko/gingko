@@ -1,5 +1,6 @@
 var database = require('./db');
 var Promise = require('bluebird');
+var objectify = require('./../classes/controllerClasses');
 
 module.exports = {
   user: {
@@ -20,7 +21,7 @@ module.exports = {
         return message;
       });
     },
-    
+
     //for a user joining a meal
     joinMeal: function(data) {
       return database.Users.find({ where: {firstName: data.firstName, lastName: data.lastName} })
@@ -44,8 +45,9 @@ module.exports = {
 
   meals: {
 
+    // TODO: Perhaps rename to getAll?
     get: function (data) {
-      database.Meals.findAll({ include: [database.Users, database.Restaurants]})
+      return database.Meals.findAll({ include: [database.Users, database.Restaurants]})
         .then(function (meals) {
           //use the bluebird promise functions
           return Promise.map(meals, function(meal) {
@@ -55,17 +57,47 @@ module.exports = {
             });
           });
         }).then(function(meals) {
-          res.json(meals);
+          //make an object to send back
+          var obj = {};
+          meals.map(function(meal, i) {
+            obj[i] = new objectify.restaurantData(meal);
+          });
+          return obj;
         });
+    },
+
+    getOne: function (data) {
+      // data being passed in is the meal's ID number that should be retrieved
+      console.log('getOne should be finding this one: ', data);
+      database.Meals.findById(data)
+        .then(function (meal) {
+          console.log('***********', meal);
+          return meal;
+          // return Promise.map(meal, function(meal) {
+          //   return meal.getUsers().then(function(result) {
+          //     var mealObj = {meal: meal, attendees: result};
+          //     return mealObj;
+          //   });
+          // });
+        })
+        .then(function(meal) {
+          res.json(meal);
+        })
+        // .then(function(meal) {
+        //   if (meal === null) {
+        //     res.sendStatus(404);
+        //   }
+        //   // res.json(meals)
+        // })
     },
 
     post: function (data) {
       return database.Users.findOrCreate({where: {firstName: data.firstName, lastName: data.lastName}})
         .then(function (user) {
-          console.log("rest name:----------------------------------------- ",data);
           return database.Restaurants.findOrCreate({where: {name: data.restaurant}, defaults:  {name: data.restaurant, address: data.address, contact: data.contact}})
             .then(function (restaurant) {
               return database.Meals.create({
+                title: data.title,
                 date: data.date,
                 time: data.time,
                 description: data.description,
