@@ -12,19 +12,21 @@ module.exports = function(dbController, passport, isLoggedIn) {
   router.post('/meals', function(req, res) {
     //make an object of all the values that we need
     var meal = classes.Meal(req.body);
+    console.log(req.body);
+    res.status(200).send();
     //if the values are not valid then send err
-    if (!meal) {
-      res.status(400).send('wrong data passed to routes');
-    }
-    //else go onto the queries
-    dbController.meals.post(meal)
-    .then(function(data){
-      res.status(200).send(data);
-    })
-    .catch(function(err) {
-      console.log('err posting meal data:', err);
-      res.status(500).send(err);
-    });
+    // if (!meal) {
+    //   res.status(400).send('wrong data passed to routes');
+    // }
+    // //else go onto the queries
+    // dbController.meals.post(meal)
+    // .then(function(data){
+    //   res.status(200).send(data);
+    // })
+    // .catch(function(err) {
+    //   console.log('err posting meal data:', err);
+    //   res.status(500).send(err);
+    // });
     
   });
 
