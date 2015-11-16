@@ -44,45 +44,37 @@ module.exports = {
 
   meals: {
 
-    get: function (req, res) {
+    get: function (data) {
       database.Meals.findAll({ include: [database.Users, database.Restaurants]})
         .then(function (meals) {
-          // res.json(meals);
+          //use the bluebird promise functions
           return Promise.map(meals, function(meal) {
             return meal.getUsers().then(function(result) {
               var mealObj = {meal: meal, attendees: result};
               return mealObj;
-            })
-          })
-          // meals[0].getUsers().then(function(result) {
-          //   res.json(result);
-            
-          // })
-          // console.log(meals);
-          // var meals = meals;
-
+            });
+          });
         }).then(function(meals) {
           res.json(meals);
-        })
+        });
     },
 
     post: function (data) {
       return database.Users.findOrCreate({where: {firstName: data.firstName, lastName: data.lastName}})
         .then(function (user) {
-          console.log("rest name: ",data.restaurant);
-          return database.Restaurants.findOrCreate({where: {name: data.restaurant}})
+          console.log("rest name:----------------------------------------- ",data);
+          return database.Restaurants.findOrCreate({where: {name: data.restaurant}, defaults:  {name: data.restaurant, address: data.address, contact: data.contact}})
             .then(function (restaurant) {
               return database.Meals.create({
                 date: data.date,
                 time: data.time,
                 description: data.description,
-                //user.id and restaurant.id are not working as they are expected to--what is up with sequelize?
                 UserId: user[0].dataValues.id,
                 RestaurantId: restaurant[0].dataValues.id
               }).then(function (message) {
                 return message;
               });
-            })
+            });
         });
     }
   },

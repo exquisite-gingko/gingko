@@ -41,7 +41,7 @@
                   lat: item.location.coordinate.latitude,
                   lng: item.location.coordinate.longitude
                 }
-              })
+              });
             }
           });
         }, function(response) {
@@ -52,6 +52,7 @@
         .then(function(response) {
           return self.data;
         })
+
     };
 
     self.add = function () {

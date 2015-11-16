@@ -14,13 +14,26 @@
            <h1>TableSurfers</h1>
            <span flex></span>
            <md-tabs md-selected="currentTab" md-stretch-tabs="always" class="md-primary md-hue-2">
-               <md-tab ui-sref="home" id="home/home.html" aria-controls="Tab 1">
-                   <md-tab-label>Home</md-tab-label>
-               </md-tab>
+              <!-- nav tab button for home view -->
+              <md-tab ui-sref="home" id="home/home.html" aria-controls="Tab 1">
+                <md-tab-label>Home</md-tab-label>
+              </md-tab>
+              <!-- nav tab button for search/add page -->
+              <md-tab ui-sref="search" id="search/search.html" aria-controls="Tab 2">
+                <md-tab-label>Add</md-tab-label>
+              </md-tab>
+              <!-- nav tab button for user profile -->
+              <md-tab ui-sref="user" id="user/user.html" aria-controls="Tab 2">
+                <md-tab-label>Account</md-tab-label>
+              </md-tab>
            </md-tabs>
        </div>
     </md-toolbar>
     <!-- end nav -->
+
+    <div>
+      <a href="/api/out/login">log in with facebook</a>
+    </div>
 
     <!-- adding site and application content here -->
     <!-- TODO: Remember we are using state based ui-routing vs default ng-route -->
@@ -46,6 +59,10 @@
     <script src="app/home/home.factory.js" charset="utf-8"></script>
     <script src="app/search/search.controller.js" charset="utf-8"></script>
     <script src="app/search/search.factory.js" charset="utf-8"></script>
+    <script src="app/user/user.controller.js" charset="utf-8"></script>
+    <script src="app/user/user.factory.js" charset="utf-8"></script>
+    <script src="app/meal/meal.controller.js" charset="utf-8"></script>
+    <script src="app/meal/meal.factory.js" charset="utf-8"></script>
     <!-- js inject end -->
 
   </body>

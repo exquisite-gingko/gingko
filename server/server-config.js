@@ -5,6 +5,7 @@ var cors = require('cors');
 var dbController = require('./services/controllers');
 var path = require('path');
 var passport = require('passport');
+var facebookStrategy = require('./services/passportStrategies');
 
 // require the routes file
 var inRouter = require('./routes/in');
@@ -13,6 +14,8 @@ var path = require('path');
 
 // require isLoggedIn method so we can use it in routes to check if user is logged in
 var isLoggedIn = require('./services/isLoggedIn');
+
+facebookStrategy(passport);
 
 inRouter = inRouter(dbController, passport, isLoggedIn);
 outRouter = outRouter(dbController, passport, isLoggedIn);
@@ -25,9 +28,13 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use('/api/in', inRouter);
-app.use('/api/out', outRouter);
+//these need to be above the route where they are used I think?? 
+//http://stackoverflow.com/questions/29600759/passport-initialize-middleware-not-in-use-for-express-4-10-for-custom-callback
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use('/api/out', outRouter);
+
 
 app.use(express.static(path.join(__dirname, '/../client')));
 
