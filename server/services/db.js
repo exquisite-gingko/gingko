@@ -9,18 +9,11 @@ var db = new Sequelize("tablesurfer", "admin", "admin", {
 
 var Users = db.define("Users", {
   //here we will have to figure out the data from facebook on authentication
-  firstName: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  lastName: {
+  Username: {
     type: Sequelize.STRING,
     allowNull: false
   }
-  // facebookId: {
-  //   type: Sequelize.STRING,
-  //   allowNull: true //this may not be with every user
-  // }
+  
 });
 
 var Meals = db.define("Meals", {

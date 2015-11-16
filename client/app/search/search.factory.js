@@ -28,6 +28,7 @@
         data: data
       })
       .then(function (response) {
+        console.log("successfully posted!");
         return response.data;
       });
     }
