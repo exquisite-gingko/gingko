@@ -20,7 +20,7 @@ module.exports = {
         return message;
       });
     },
-    
+
     //for a user joining a meal
     joinMeal: function(data) {
       return database.Users.find({ where: {firstName: data.firstName, lastName: data.lastName} })
@@ -44,6 +44,7 @@ module.exports = {
 
   meals: {
 
+    // TODO: Perhaps rename to getAll?
     get: function (data) {
       database.Meals.findAll({ include: [database.Users, database.Restaurants]})
         .then(function (meals) {
@@ -57,6 +58,31 @@ module.exports = {
         }).then(function(meals) {
           res.json(meals);
         });
+    },
+
+    getOne: function (data) {
+      // data being passed in is the meal's ID number that should be retrieved
+      console.log('getOne should be finding this one: ', data);
+      database.Meals.findById(data)
+        .then(function (meal) {
+          console.log('***********', meal);
+          return meal;
+          // return Promise.map(meal, function(meal) {
+          //   return meal.getUsers().then(function(result) {
+          //     var mealObj = {meal: meal, attendees: result};
+          //     return mealObj;
+          //   });
+          // });
+        })
+        .then(function(meal) {
+          res.json(meal);
+        })
+        // .then(function(meal) {
+        //   if (meal === null) {
+        //     res.sendStatus(404);
+        //   }
+        //   // res.json(meals)
+        // })
     },
 
     post: function (data) {

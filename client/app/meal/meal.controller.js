@@ -9,24 +9,29 @@
 
   MealCtrl.$inject = ['$http', '$location', '$window'];
 
-  function MealCtrl() {
+  function MealCtrl($http, $location, $window) {
     var self = this;
-    self.id = $location.path;
+    self.id = $location.path();
+
+
+    self.activate = function() {
+      self.getMeal();
+    };
 
     self.getMeal = function() {
-      var path = '/api/in/meals';
+      var path = '/api/in';
       console.log('Getting users from DB, path is: ', path + $location.path());
       return $http({
-        url: path + $location.path(),
-        method: 'GET'
+        method: 'GET',
+        url: path + $location.path()
       })
       .then(function(response) {
+        console.log(' ******** RESPONSE RETURNED **********');
         console.log('Get users data is here, resp.data: ', response.data);
-        cb(response.data);
       });
-    }
+    };
 
-    self.getMeal();
+    self.activate();
 
   }
 
