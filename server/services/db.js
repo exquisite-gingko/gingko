@@ -24,14 +24,16 @@ var Users = db.define("Users", {
 });
 
 var Meals = db.define("Meals", {
-  //title field
+  title: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
   date: {
-    type: Sequelize.DATE,
+    type: Sequelize.STRING,
     allowNull: false
   },
   time: {
-    //.date is used for timestamp
-    type: Sequelize.DATE,
+    type: Sequelize.STRING,
     allowNull: false
   },
   description: {

@@ -11,7 +11,6 @@ module.exports = function(dbController, passport, isLoggedIn) {
   //posting to the query file which will post to the meals database details of a new event
   router.post('/meals', function(req, res) {
 
-    console.log('--------------in routes', req.body.firstName);
     //make an object of all the values that we need
     var meal = classes.Meal(req.body);
     console.log(req.body);
@@ -38,13 +37,23 @@ module.exports = function(dbController, passport, isLoggedIn) {
     .catch(function(err) {
       console.log('Error getting meals/:id from router: ', err);
       res.status(404).send(err);
-    })
+    });
   });
 
 //------------------------------------------------------//
   router.get('/meals', function(req, res) {
     //request on loading the main page to see the upcoming meals
-    dbController.meals.get(req, res);
+    console.log('routing to db');
+    dbController.meals.get()
+    .then(function(data) {
+      console.log('-----------------in router---------------------');
+      res.status(200).send(data);
+    })
+    .catch(function(err) {
+      console.log('err posting meal data', err);
+      res.status(500).send(err);
+    });
+
   });
 
   router.post('/meal/join', function(req, res) {
