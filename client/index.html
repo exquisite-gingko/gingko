@@ -14,9 +14,15 @@
            <h1>TableSurfers</h1>
            <span flex></span>
            <md-tabs md-selected="currentTab" md-stretch-tabs="always" class="md-primary md-hue-2">
-               <md-tab ui-sref="home" id="home/home.html" aria-controls="Tab 1">
-                   <md-tab-label>Home</md-tab-label>
-               </md-tab>
+              <!-- nav tab button for home view -->
+              <md-tab ui-sref="home" id="home/home.html" aria-controls="Tab 1">
+                <md-tab-label>Home</md-tab-label>
+              </md-tab>
+              <!-- nav tab button for search/add page -->
+              <md-tab ui-sref="search" id="search/search.html" aria-controls="Tab 2">
+                <md-tab-label>Add</md-tab-label>
+              </md-tab>
+
            </md-tabs>
        </div>
     </md-toolbar>
