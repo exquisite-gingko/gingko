@@ -1,6 +1,6 @@
 // TODO: 
-// create a file in this folder called auth.js
-// copy the content of this file into auth.js
+// create a file in this folder called authKeys.js
+// copy the content of this file into authKeys.js
 // replace relevant codes with our fb and yelp keys
 
 module.exports = {
