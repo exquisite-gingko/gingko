@@ -28,6 +28,11 @@
         templateUrl: 'app/user/user.html',
         controller: 'UserCtrl'
       })
+      .state('meal', {
+        url: '/meal',
+        templateUrl: 'app/meal/meal.html',
+        controller: 'MealCtrl'
+      });
       // TODO: remove above semicolon to add more routes
   }
 
