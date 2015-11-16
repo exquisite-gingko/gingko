@@ -13,7 +13,9 @@ module.exports = function(dbController, passport, isLoggedIn) {
 
     //make an object of all the values that we need
     var meal = classes.Meal(req.body);
+    console.log(req.body);
     //if the values are not valid then send err
+
     if (!meal) {
       res.status(400).send('wrong data passed to routes');
     }
@@ -25,7 +27,18 @@ module.exports = function(dbController, passport, isLoggedIn) {
 
   });
 
-
+  router.get('/meals/:id', function(req, res) {
+    var meal_id = req.params.id;
+    console.log('Serverside, retrieve this meal: ', req.params);
+    dbController.meals.getOne(meal_id)
+    .then(function(data) {
+      res.status(200).send(data);
+    })
+    .catch(function(err) {
+      console.log('Error getting meals/:id from router: ', err);
+      res.status(404).send(err);
+    });
+  });
 
 //------------------------------------------------------//
   router.get('/meals', function(req, res) {

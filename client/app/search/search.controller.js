@@ -4,15 +4,17 @@
   angular.module('app')
   .controller('SearchCtrl', SearchCtrl);
 
-  SearchCtrl.$inject = ['$http', '$q', '$log', '$window'];
+  SearchCtrl.$inject = ['$http', '$q', '$log', '$window', 'homeFactory'];
 
-  function SearchCtrl($http, $q, $log, $window) {
+  function SearchCtrl($http, $q, $log, $window, homeFactory) {
     // TODO: Please verify that this matches the refactored style
 
     var self = this;
     // below are settings for the md-autocomplete directive
     self.simulateQuery = false;
     self.isDisabled = false;
+    self.meal = {};
+    self.attendees = [1,2,3,4,5,6,7,8,9];
     self.selectedItem = undefined;
 
     self.querySearch = function(query) {
@@ -49,22 +51,15 @@
         })
         .then(function(response) {
           return self.data;
-        });
+        })
+
     };
 
     self.add = function () {
-      console.log(self.selectedItem);
 
-      // TODO: Hook up functionality to insert selected item into DB.
+      homeFactory.postMeal(self.meal);
 
-      // return $http({
-      //   method: 'POST',
-      //   url: '/api/in/meals',
-      //   data: self.selectedItem
-      // }).then(function(res) {
-      //   // TODO: Need to clear out the selected area after submission
-      //   self.selectedItem = '';
-      // })
     };
+
 }
 })();
