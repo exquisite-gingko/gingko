@@ -53,10 +53,10 @@ module.exports = function(db, passport, isLoggedIn) {
 
   router.get('/login', passport.authenticate('facebook', { scope: 'email' }));
 
-  router.get('/login/callback', passport.authenticate('facebook', {
-    successRedirect: '/',
-    failureRedirect: '/'
-  }));
+  router.get('/login/callback', passport.authenticate('facebook', { failureRedirect: '/' }),
+    function (req, res) {
+      res.redirect('/');
+    });
 
   router.get('/logout', function (req, res) {
     req.logout();
