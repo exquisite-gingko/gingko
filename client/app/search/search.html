@@ -33,10 +33,51 @@
 
         </md-autocomplete>
         <!-- md autocomplete settings end -->
+        
         <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
           <md-button class="md-raised md-primary" ng-disabled="!vm.selectedItem">Add</md-button>
         </section>
       </form>
+    </md-content>
+  </div>
+
+  <div ng-controller="AddCtrl" layout="column" ng-cloak class="md-inline-form">
+    <md-content layout-padding>
+      <form name="mealForm">
+        
+        <div layout layout-sm="column">
+          <md-input-container flex>
+            <md-datepicker ng-model="user.submissionDate" md-placeholder="Select a date"></md-datepicker>
+          </md-input-container>
+        </div>
+        <div layout layout-sm="column">
+          <md-input-container flex>
+           <md-select ng-model="attendees" placeholder="Set number of attendees">
+            <md-option ng-value="number" ng-repeat="number in attendees">{{ number }}</md-option>
+           </md-select>
+          </md-input-container>
+        </div>
+        <!-- <div layout layout-sm="column">
+          <md-input-container flex>
+            <label>First name</label>
+            <input ng-module="user.firstname">
+          </md-input-container>
+          <md-input-container flex>
+            <label>Last name</label>
+            <input ng-module="user.lastname">
+          </md-input-container>
+        </div> -->
+
+        <md-input-container flex>
+          <label>Write a description</label>
+          <textarea ng-model="user.eventDescription" columns="1" md-maxlength="300" rows="5"></textarea>
+        </md-input-container>
+
+      </form>
+     <!--  <md-input-container>
+        <label></label>
+        <input ng-modle="">
+      </md-input-container> -->
     </md-content>
   </div>
 </div>
