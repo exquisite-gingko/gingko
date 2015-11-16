@@ -22,16 +22,14 @@
     }
 
     function postMeal (data) {
-      console.log(data);
-      // return $http({
-      //   method: 'POST',
-      //   url: '/api/in/meals',
-      //   data: data
-      // })
-      // .then(function (response) {
-      //   console.log('response returned!!');
-      //   return response.data;
-      // });
+      return $http({
+        method: 'POST',
+        url: '/api/in/meals',
+        data: data
+      })
+      .then(function (response) {
+        return response.data;
+      });
     }
   }
 
