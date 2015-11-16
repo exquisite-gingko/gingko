@@ -22,11 +22,11 @@ module.exports = function (passport) {
     callbackURL: configAuth.facebookAuth.callbackURL
   }, function (token, refreshToken, profile, done) {
     process.nextTick(function () {
+      console.log(profile);
       database.Users.findOrCreate({ where:
         {
           facebookId: profile.id,
-          firstName: profile.name.givenName,
-          lastName: profile.name.familyName
+          username: profile.displayName,
         }
       })
       .then(function (user) {
