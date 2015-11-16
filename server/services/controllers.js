@@ -56,15 +56,12 @@ module.exports = {
             });
           });
         }).then(function(meals) {
-          console.log('type--------------------------------------',typeof meals[0].meal.date.toString());
           //make an object to send back
           var obj = {};
           meals.map(function(meal, i) {
             obj[i] = new objectify.restaurantData(meal);
           });
-          //var data = new objectify.restaurantData(meals);
-          console.log('-----------controller-------------', obj);
-          return meals;
+          return obj;
         });
     },
 

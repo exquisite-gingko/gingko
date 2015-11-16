@@ -11,6 +11,8 @@ module.exports = {
     this.date = moment(date).format('LL');
     this.time = moment(time).format('h:mm:ss a');
     this.description = returnFromDb.meal.description;
+    this.address = returnFromDb.meal.Restaurant.address;
+
   }
   
 };
