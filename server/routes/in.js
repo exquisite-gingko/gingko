@@ -3,21 +3,20 @@ var request = require('request');
 var classes = require('./../classes/classes');
 
 
-module.exports = function(dbController) {
-
-//------------------------------------------------------//
+module.exports = function(dbController, passport, isLoggedIn) {
 
   var router = express.Router();
 
+//------------------------------------------------------//
   //posting to the query file which will post to the meals database details of a new event
   router.post('/meals', function(req, res) {
-
+    //make an object of all the values that we need
     var meal = classes.Meal(req.body);
-
+    //if the values are not valid then send err
     if (!meal) {
       res.status(400).send('wrong data passed to routes');
     }
-       
+    //else go onto the queries
     dbController.meals.post(meal)
     .then(function(data){
       res.status(200).send(data);
@@ -29,23 +28,17 @@ module.exports = function(dbController) {
     
   });
 
-//------------------------------------------------------//
 
   router.get('/meals', function(req, res) {
-
     //request on loading the main page to see the upcoming meals
     dbController.meals.get(req, res);
   });
 
   router.post('/meal/join', function(req, res) {
     //user joining an event
-    console.log('in route');
-    var packetOfJoiningData = {};
-    packetOfJoiningData.firstName = req.body.firstName;
-    packetOfJoiningData.lastName = req.body.lastName;
-    packetOfJoiningData.eventDetails = req.body.description;
-    console.log('packet to send', packetOfJoiningData);
-    dbController.user.joinMeal(packetOfJoiningData)
+    var join = new classes.Join(req.body);
+
+    dbController.user.joinMeal(join)
     .then(function(data) {
       res.status(200).send(data);
     })
@@ -59,18 +52,32 @@ module.exports = function(dbController) {
   //testing purposes only?? Do not thing that this is relevant to our app currenly?
   router.get('/user', function(req, res) {
     //get the user details from the database
-    dbController.user.get(req, res);
+    dbController.user.get()
+    .then(function(data) {
+      res.status(200).send(data);
+    })
+    .catch(function(err) {
+      console.log('err getting user data:', err);
+      res.status(500).send(err);
+    });
+
   });
+
+
 
   router.post('/user', function(req, res) {
-    //request sent to facebook for details
-    //the response is then sent here
-    //and this posts needed details to the query to insert it into the database
-    dbController.user.post(req, res);
-  });
+    
+    var newUser = new classes.AddUser(req.body);
 
-  router.get('/user', function (req, res) {
-    dbController.user.get(req, res);
+    dbController.user.post(newUser)
+    .then(function(data) {
+      res.status(200).send(data);
+    })
+    .catch(function(err) {
+      console.log('err posting user data:', err);
+      res.status(500).send(err);
+    });
+
   });
 
   return router;

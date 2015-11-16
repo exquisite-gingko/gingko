@@ -6,10 +6,11 @@ var n = require('nonce')();
 var qs = require('querystring');
 var Promise = require('bluebird');
 
+var auth = require('../services/auth.js');
+
 var request_yelp = function(set_parameters, callback) {
   // set_parameters: object with params to search
   // callback: callback(error, response, body)
-
   var httpMethod = 'GET';
   var url = 'http://api.yelp.com/v2/search';
 
@@ -19,8 +20,8 @@ var request_yelp = function(set_parameters, callback) {
   };
 
   var required_parameters = {
-    oauth_consumer_key : ENTER_OAUTH_CONSUMER_KEY_HERE,
-    oauth_token : ENTER_OAUTH_TOKEN_HERE,
+    oauth_consumer_key : auth.oauth.consumer_key,
+    oauth_token : auth.oauth.token,
     oauth_nonce : n(),
     oauth_timestamp : n().toString().substr(0,10),
     oauth_signature_method : 'HMAC-SHA1',
@@ -30,8 +31,8 @@ var request_yelp = function(set_parameters, callback) {
   // parameters combined in order of importance
   var parameters = _.assign(default_parameters, set_parameters, required_parameters);
 
-  var consumerSecret = ENTER_CONSUMER_SECRET_HERE;
-  var tokenSecret = ENTER_TOKEN_SECRET_HERE;
+  var consumerSecret = auth.yelp.consumerSecret;
+  var tokenSecret = auth.yelp.tokenSecret;
 
   /* Then we call Yelp's Oauth 1.0a server, and it returns a signature */
   /* Note: This signature is only good for 300 seconds after the oauth_timestamp */
@@ -46,12 +47,20 @@ var request_yelp = function(set_parameters, callback) {
 
 };
 
-module.exports = function(db) {
+module.exports = function(db, passport, isLoggedIn) {
 
   var router = express.Router();
 
-  router.get('/login', function(req, res) {
-    //query the facebook api
+  router.get('/login', passport.authenticate('facebook', { scope: 'email' }));
+
+  router.get('/login/callback', passport.authenticate('facebook', {
+    successRedirect: '/',
+    failureRedirect: '/'
+  }));
+
+  router.get('/logout', function (req, res) {
+    req.logout();
+    res.redirect('/');
   });
 
   router.get('/yelp', function(req, res) {
