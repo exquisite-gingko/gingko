@@ -34,6 +34,8 @@
         </md-autocomplete>
         <!-- md autocomplete settings end -->
 
+        <!-- user event details start -->
+
         <div layout layout-sm="column">
           <md-input-container flex>
             <md-datepicker ng-model="vm.meal.submissionDate" md-placeholder="Select a date"></md-datepicker>
@@ -52,10 +54,8 @@
           <label>Write a description</label>
           <textarea ng-model="vm.meal.eventDescription" columns="1" md-maxlength="300" rows="5"></textarea>
         </md-input-container>
-        <!-- <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-          <md-button class="md-raised md-primary" ng-disabled="">Add Event</md-button>
-        </section> -->
 
+        <!-- user submission end -->
 
         <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
           <md-button class="md-raised md-primary" ng-disabled="!vm.meal.restaurant || !vm.meal.submissionDate || !vm.meal.attendees || !vm.meal.eventDescription">Add</md-button>
@@ -64,33 +64,5 @@
     </md-content>
   </div>
 
-  <!-- <div ng-controller="AddCtrl" layout="column" ng-cloak class="md-inline-form">
-    <md-content layout-padding>
-      <form name="mealForm" ng-submit="addMeal()">
-        
-        <div layout layout-sm="column">
-          <md-input-container flex>
-            <md-datepicker ng-model="meal.submissionDate" md-placeholder="Select a date"></md-datepicker>
-          </md-input-container>
-        </div>
-        <div layout layout-sm="column">
-          <md-input-container flex>
-           <md-select ng-model="meal.attendees" placeholder="Set number of attendees">
-            <md-option ng-value="number" ng-repeat="number in attendees">{{ number }}</md-option>
-           </md-select>
-          </md-input-container>
-        </div>
 
-
-        <md-input-container flex>
-          <label>Write a description</label>
-          <textarea ng-model="meal.eventDescription" columns="1" md-maxlength="300" rows="5"></textarea>
-        </md-input-container>
-        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-          <md-button class="md-raised md-primary" ng-disabled="">Add Event</md-button>
-        </section>
-      </form>
-
-    </md-content>
-  </div> -->
 </div>
