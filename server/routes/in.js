@@ -14,7 +14,9 @@ module.exports = function(dbController, passport, isLoggedIn) {
     console.log('--------------in routes', req.body.firstName);
     //make an object of all the values that we need
     var meal = classes.Meal(req.body);
+    console.log(req.body);
     //if the values are not valid then send err
+
     if (!meal) {
       res.status(400).send('wrong data passed to routes');
     }
