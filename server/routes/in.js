@@ -23,12 +23,12 @@ module.exports = function(dbController, passport, isLoggedIn) {
     })
     .catch(function(err) {
       console.log('err posting meal data:', err);
-      res.status(500).send(err);
+      res.send(err);
     });
     
   });
 
-
+//------------------------------------------------------//
   router.get('/meals', function(req, res) {
     //request on loading the main page to see the upcoming meals
     dbController.meals.get(req, res);
@@ -49,7 +49,8 @@ module.exports = function(dbController, passport, isLoggedIn) {
 
   });
 
-  //testing purposes only?? Do not thing that this is relevant to our app currenly?
+//------------------------------------------------------//
+  //testing purposes only?? Do not thing that this is relevant to our app currenly
   router.get('/user', function(req, res) {
     //get the user details from the database
     dbController.user.get()
@@ -64,7 +65,7 @@ module.exports = function(dbController, passport, isLoggedIn) {
   });
 
 
-
+//------------------------------------------------------//
   router.post('/user', function(req, res) {
     
     var newUser = new classes.AddUser(req.body);

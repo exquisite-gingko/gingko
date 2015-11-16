@@ -16,11 +16,11 @@ var Users = db.define("Users", {
   lastName: {
     type: Sequelize.STRING,
     allowNull: false
-  },
-  facebookId: {
-    type: Sequelize.STRING,
-    allowNull: true //this may not be with every user
   }
+  // facebookId: {
+  //   type: Sequelize.STRING,
+  //   allowNull: true //this may not be with every user
+  // }
 });
 
 var Meals = db.define("Meals", {

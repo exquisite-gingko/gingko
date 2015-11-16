@@ -62,20 +62,19 @@ module.exports = {
     post: function (data) {
       return database.Users.findOrCreate({where: {firstName: data.firstName, lastName: data.lastName}})
         .then(function (user) {
-          console.log("rest name: ",data.restaurant);
-          return database.Restaurants.findOrCreate({where: {name: data.restaurant}})
+          console.log("rest name:----------------------------------------- ",data);
+          return database.Restaurants.findOrCreate({where: {name: data.restaurant}, defaults:  {name: data.restaurant, address: data.address, contact: data.contact}})
             .then(function (restaurant) {
               return database.Meals.create({
                 date: data.date,
                 time: data.time,
                 description: data.description,
-                //user.id and restaurant.id are not working as they are expected to--what is up with sequelize?
                 UserId: user[0].dataValues.id,
                 RestaurantId: restaurant[0].dataValues.id
               }).then(function (message) {
                 return message;
               });
-            })
+            });
         });
     }
   },
