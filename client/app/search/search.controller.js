@@ -54,6 +54,7 @@
 
     self.add = function () {
       //set the restaurant in the factory so it can be packaged in with other user meal data
+      // console.log(self.selectedItem);
       homeFactory.setRest(self.selectedItem);
 
       /*We might have to merge restaurant info with the rest of user info here

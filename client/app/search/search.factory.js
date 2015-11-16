@@ -22,7 +22,7 @@
 
     function setRest (data) {
       restaurant = data;
-      console.log(restaurant);
+      // console.log(restaurant);
     }
 
     function activate () {
@@ -33,15 +33,15 @@
       //merge 
       data.restaurant = restaurant;
       console.log(data);
-      // return $http({
-      //   method: 'POST',
-      //   url: '/api/in/meals',
-      //   data: data
-      // })
-      // .then(function (response) {
-      //   console.log('response returned!!');
-      //   return response.data;
-      // });
+      return $http({
+        method: 'POST',
+        url: '/api/in/meals',
+        data: data
+      })
+      .then(function (response) {
+        console.log('response returned!!');
+        return response.data;
+      });
     }
   }
 
