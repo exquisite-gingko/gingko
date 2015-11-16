@@ -1,5 +1,6 @@
 var database = require('./db');
 var Promise = require('bluebird');
+var objectify = require('./../classes/controllerClasses');
 
 module.exports = {
   user: {
@@ -45,19 +46,24 @@ module.exports = {
   meals: {
 
     get: function (data) {
-      console.log('getting meals!! in controllers fn--------------')
       return database.Meals.findAll({ include: [database.Users, database.Restaurants]})
         .then(function (meals) {
           //use the bluebird promise functions
           return Promise.map(meals, function(meal) {
             return meal.getUsers().then(function(result) {
               var mealObj = {meal: meal, attendees: result};
-              console.log('meal obj', mealObj);
               return mealObj;
             });
           });
         }).then(function(meals) {
-          console.log('----------------->>>>>>>>',meal);
+          console.log('type--------------------------------------',typeof meals[0].meal.date.toString());
+          //make an object to send back
+          var obj = {};
+          meals.map(function(meal, i) {
+            obj[i] = new objectify.restaurantData(meal);
+          });
+          //var data = new objectify.restaurantData(meals);
+          console.log('-----------controller-------------', obj);
           return meals;
         });
     },
@@ -68,6 +74,7 @@ module.exports = {
           return database.Restaurants.findOrCreate({where: {name: data.restaurant}, defaults:  {name: data.restaurant, address: data.address, contact: data.contact}})
             .then(function (restaurant) {
               return database.Meals.create({
+                title: data.title,
                 date: data.date,
                 time: data.time,
                 description: data.description,

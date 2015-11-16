@@ -1,7 +1,6 @@
 //this is where we construct our 'packets' of data to send to our query functions
 //type check and formatting here
 
-
 module.exports = {
 
   Meal : function(body) {
@@ -9,6 +8,7 @@ module.exports = {
 
     var obj = {};
     //dates and times to be formatted using moment.js checker thing
+    obj.title = body.title;
     obj.date = body.date;
     obj.time = body.time;
 

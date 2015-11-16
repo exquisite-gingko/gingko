@@ -13,10 +13,11 @@
     self.getData = function() {
       //call the factory function
       homeFactory.getMeals();
+      // homeFactory.postMeal();
+
     };
 
-    // Bjarke's demo data included here, repeated data should be moved to factory file
-  //   self.events = [
+//[
   //     {
   //       host: 'Bjarke',
   //       restaurant: 'Nobu',

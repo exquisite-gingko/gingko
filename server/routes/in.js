@@ -29,10 +29,22 @@ module.exports = function(dbController, passport, isLoggedIn) {
     
   });
 
+
+
 //------------------------------------------------------//
   router.get('/meals', function(req, res) {
     //request on loading the main page to see the upcoming meals
-    dbController.meals.get(req, res);
+    console.log('routing to db');
+    dbController.meals.get()
+    .then(function(data) {
+      console.log('-----------------in router---------------------');
+      res.status(200).send(data);
+    })
+    .catch(function(err) {
+      console.log('err posting meal data', err);
+      res.status(500).send(err);
+    });
+
   });
 
   router.post('/meal/join', function(req, res) {
@@ -41,7 +53,6 @@ module.exports = function(dbController, passport, isLoggedIn) {
 
     dbController.user.joinMeal(join)
     .then(function(data) {
-      console.log('-----return to route--------------------------->',data);
       res.status(200).send(data);
     })
     .catch(function(err) {
