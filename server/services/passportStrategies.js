@@ -25,7 +25,7 @@ module.exports = function (passport) {
       database.Users.findOrCreate({ where:
         {
           facebookId: profile.id,
-          username: profile.displayName,
+          username: profile.displayName
         }
       })
       .then(function (user) {

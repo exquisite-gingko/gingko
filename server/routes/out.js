@@ -77,7 +77,7 @@ module.exports = function(db, passport, isLoggedIn) {
       } else {
         res.send(JSON.parse(body).businesses);
       }
-    })
+    });
   });
 
   router.get('/', function(req, res) {

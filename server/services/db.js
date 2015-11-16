@@ -2,46 +2,35 @@ var Sequelize = require("sequelize");
 
 //Unsure if we need password, come back to this
 
-
-
 var db = new Sequelize("tablesurfer", "admin", "admin", {
   dialect: "postgres", // or 'sqlite', mysql', 'mariadb'
   port: 5432 //(for postgres)
 });
 
-// .authenticate().complete(function(err) {
-//   if (!!err) {
-//     console.log('Unable to connect to the database:', err)
-//   } else {
-//     console.log('Connection has been established successfully.')
-//   }
-// });
-
 var Users = db.define("Users", {
   //here we will have to figure out the data from facebook on authentication
-  firstName: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  lastName: {
+  ssername: {
     type: Sequelize.STRING,
     allowNull: false
   },
   facebookId: {
     type: Sequelize.STRING,
-    allowNull: true //this may not be with every user
+    allowNull: false
   }
+  
 });
 
 var Meals = db.define("Meals", {
-  //title field
+  title: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
   date: {
-    type: Sequelize.DATE,
+    type: Sequelize.STRING,
     allowNull: false
   },
   time: {
-    //.date is used for timestamp
-    type: Sequelize.DATE,
+    type: Sequelize.STRING,
     allowNull: false
   },
   description: {
@@ -72,7 +61,7 @@ var Restaurants = db.define("Restaurants", {
   //rating?
 });
 
-//create restaurant foreign key for meal
+//this creates restaurant foreign key for meal
 Restaurants.hasOne(Meals);
 Meals.belongsTo(Restaurants);
 
