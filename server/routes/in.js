@@ -25,7 +25,7 @@ module.exports = function(dbController, passport, isLoggedIn) {
       console.log('err posting meal data:', err);
       res.status(500).send(err);
     });
-    
+
   });
 
 
@@ -63,10 +63,15 @@ module.exports = function(dbController, passport, isLoggedIn) {
 
   });
 
+  // params usage
+  router.get('/user/:id', function(req, res) {
+
+  });
+
 
 
   router.post('/user', function(req, res) {
-    
+
     var newUser = new classes.AddUser(req.body);
 
     dbController.user.post(newUser)

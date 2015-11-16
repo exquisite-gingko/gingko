@@ -28,6 +28,7 @@
         templateUrl: 'app/user/user.html',
         controller: 'UserCtrl'
       })
+      // When you're linked to a unique id in a meal, we render the page
       .state('meal', {
         url: '/meal/:id',
         templateUrl: 'app/meal/meal.html',
