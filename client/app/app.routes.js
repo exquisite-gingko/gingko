@@ -29,7 +29,7 @@
         controller: 'UserCtrl'
       })
       .state('meal', {
-        url: '/meal',
+        url: '/meal/:id',
         templateUrl: 'app/meal/meal.html',
         controller: 'MealCtrl'
       });
