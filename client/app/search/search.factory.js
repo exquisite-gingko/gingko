@@ -7,30 +7,41 @@
 
   homeFactory.$inject = ['$http'];
 
+  var restaurant;
+
   function homeFactory($http) {
     var services = {
 
       activate : activate,
-      postMeal : postMeal
+      postMeal : postMeal,
+      setRest : setRest
 
     };
 
     return services;
+
+    function setRest (data) {
+      restaurant = data;
+      console.log(restaurant);
+    }
 
     function activate () {
       postMeal();
     }
 
     function postMeal (data) {
-      return $http({
-        method: 'POST',
-        url: '/api/in/meals',
-        data: data
-      })
-      .then(function (response) {
-        console.log('response returned!!');
-        return response.data;
-      });
+      //merge 
+      data.restaurant = restaurant;
+      console.log(data);
+      // return $http({
+      //   method: 'POST',
+      //   url: '/api/in/meals',
+      //   data: data
+      // })
+      // .then(function (response) {
+      //   console.log('response returned!!');
+      //   return response.data;
+      // });
     }
   }
 

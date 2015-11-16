@@ -4,9 +4,9 @@
   angular.module('app')
   .controller('SearchCtrl', SearchCtrl);
 
-  SearchCtrl.$inject = ['$http', '$q', '$log', '$window'];
+  SearchCtrl.$inject = ['$http', '$q', '$log', '$window', 'homeFactory'];
 
-  function SearchCtrl($http, $q, $log, $window) {
+  function SearchCtrl($http, $q, $log, $window, homeFactory) {
     // TODO: Please verify that this matches the refactored style
 
     var self = this;
@@ -50,10 +50,17 @@
         .then(function(response) {
           return self.data;
         })
-    }
+    };
 
     self.add = function () {
-      console.log(self.selectedItem);
+      //set the restaurant in the factory so it can be packaged in with other user meal data
+      homeFactory.setRest(self.selectedItem);
+
+      /*We might have to merge restaurant info with the rest of user info here
+        with something like:
+        $scope.meal.restaurant = self.selectedItem
+        data: $scope.meal
+      */
 
       // TODO: Hook up functionality to insert selected item into DB.
 
@@ -65,6 +72,8 @@
       //   // TODO: Need to clear out the selected area after submission
       //   self.selectedItem = '';
       // })
-    }
+    };
+
+
 }
 })();
