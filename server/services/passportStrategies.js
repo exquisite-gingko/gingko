@@ -20,9 +20,7 @@ module.exports = function (passport) {
     clientID: configAuth.facebookAuth.clientID,
     clientSecret: configAuth.facebookAuth.clientSecret,
     callbackURL: configAuth.facebookAuth.callbackURL
-  },
-
-  function (token, refreshToken, profile, done) {
+  }, function (token, refreshToken, profile, done) {
     process.nextTick(function () {
       database.Users.findOrCreate({ where:
         {

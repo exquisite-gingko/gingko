@@ -13,7 +13,7 @@ Icon
 # Files that might appear on external disk
 .Trashes
 node_modules/
-server/services/auth.js
+server/services/authKeys.js
 bower_components/
 client/lib
 

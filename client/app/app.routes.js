@@ -21,6 +21,17 @@
         url: '/search',
         templateUrl: 'app/search/search.html',
         controller: 'SearchCtrl'
+      })
+      // TODO: perhaps use URL params '/:username' to grab account details
+      .state('user', {
+        url: '/user',
+        templateUrl: 'app/user/user.html',
+        controller: 'UserCtrl'
+      })
+      .state('meal', {
+        url: '/meal',
+        templateUrl: 'app/meal/meal.html',
+        controller: 'MealCtrl'
       });
       // TODO: remove above semicolon to add more routes
   }

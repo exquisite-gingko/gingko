@@ -5,6 +5,7 @@ var cors = require('cors');
 var dbController = require('./services/controllers');
 var path = require('path');
 var passport = require('passport');
+var facebookStrategy = require('./services/passportStrategies');
 
 // require the routes file
 var inRouter = require('./routes/in');
@@ -13,6 +14,8 @@ var path = require('path');
 
 // require isLoggedIn method so we can use it in routes to check if user is logged in
 var isLoggedIn = require('./services/isLoggedIn');
+
+facebookStrategy(passport);
 
 inRouter = inRouter(dbController, passport, isLoggedIn);
 outRouter = outRouter(dbController, passport, isLoggedIn);
