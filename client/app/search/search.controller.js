@@ -13,6 +13,10 @@
     // below are settings for the md-autocomplete directive
     self.simulateQuery = false;
     self.isDisabled = false;
+    // self.restaurant = undefined;
+    // $scope.restaurant;
+    self.meal = {};
+    self.attendees = [1,2,3,4,5,6,7,8,9];
     self.selectedItem = undefined;
 
     self.querySearch = function(query) {
@@ -54,8 +58,10 @@
 
     self.add = function () {
       //set the restaurant in the factory so it can be packaged in with other user meal data
-      // console.log(self.selectedItem);
-      homeFactory.setRest(self.selectedItem);
+      // self.meal.restaurant = $scope.restaurant;
+      // self.meal.restaurant = self.selectedItem;
+      console.log(self.meal);
+      // homeFactory.setRest(self.selectedItem);
 
       /*We might have to merge restaurant info with the rest of user info here
         with something like:
@@ -74,6 +80,11 @@
       //   self.selectedItem = '';
       // })
     };
+
+    self.check = function () {
+      // console.log(self.restaurant);
+      console.log(self.meal);
+    }
 
 
 }

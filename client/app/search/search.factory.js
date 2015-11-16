@@ -5,11 +5,11 @@
   angular.module('app')
   .factory('homeFactory', homeFactory);
 
-  homeFactory.$inject = ['$http'];
+  homeFactory.$inject = ['$http', '$window'];
 
-  var restaurant;
+  var restaurant = undefined;
 
-  function homeFactory($http) {
+  function homeFactory($http, $window) {
     var services = {
 
       activate : activate,
@@ -22,7 +22,7 @@
 
     function setRest (data) {
       restaurant = data;
-      // console.log(restaurant);
+      console.log(restaurant);
     }
 
     function activate () {
@@ -33,15 +33,20 @@
       //merge 
       data.restaurant = restaurant;
       console.log(data);
-      return $http({
-        method: 'POST',
-        url: '/api/in/meals',
-        data: data
-      })
-      .then(function (response) {
-        console.log('response returned!!');
-        return response.data;
-      });
+      if (data.restaurant !== undefined) {
+        return $http({
+          method: 'POST',
+          url: '/api/in/meals',
+          data: data
+        })
+        .then(function (response) {
+          console.log('response returned!!');
+          return response.data;
+        });
+      }
+      else {
+        $window.alert("Please enter a restaurant");
+      }
     }
   }
 
