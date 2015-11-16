@@ -2,3 +2,7 @@
   padding: 10%;
   text-align: center;
 }
+
+.md-datepicker-button {
+  width: 36px; 
+}

@@ -2,6 +2,12 @@
   <div ng-controller="SearchCtrl as vm" layout="column" ng-cloak>
     <md-content layout-padding layout="column">
       <form ng-submit="$event.preventDefault(); vm.add()">
+
+        <md-input-container flex>
+          <label>Name your event</label>
+          <textarea ng-model="vm.meal.name" columns="1" rows="1"></textarea>
+        </md-input-container>
+
         <!-- md autocomplete settings + start -->
         <md-autocomplete
             md-selected-item="vm.meal.restaurant"
@@ -38,9 +44,13 @@
 
         <div layout layout-sm="column">
           <md-input-container flex>
-            <md-datepicker ng-model="vm.meal.submissionDate" md-placeholder="Select a date"></md-datepicker>
+            <md-datepicker ng-model="vm.meal.date" md-placeholder="Select a date"></md-datepicker>
+          </md-input-container>
+          <md-input-container flex>
+            <input type="time" ng-model="vm.meal.time" placeholder="Choose a time">
           </md-input-container>
         </div>
+
         <div layout layout-sm="column">
           <md-input-container flex>
            <md-select ng-model="vm.meal.attendees" placeholder="Set number of attendees">
@@ -58,7 +68,7 @@
         <!-- user submission end -->
 
         <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-          <md-button class="md-raised md-primary" ng-disabled="!vm.meal.restaurant || !vm.meal.submissionDate || !vm.meal.attendees || !vm.meal.eventDescription">Add</md-button>
+          <md-button class="md-raised md-primary" ng-disabled="!vm.meal.name || !vm.meal.restaurant || !vm.meal.date || !vm.meal.time || !vm.meal.attendees || !vm.meal.eventDescription">Add</md-button>
         </section>
       </form>
     </md-content>
