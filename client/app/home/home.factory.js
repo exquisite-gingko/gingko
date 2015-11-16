@@ -12,6 +12,7 @@
 "description":"Pizza Time",
 "restaurant":"Pizza Express",
 "address":"234 Market Street",
+"contact":"0183636293",
 "firstName":"David",
 "lastName":"Tsai"};
 
@@ -29,8 +30,8 @@
       postMeal();
     }
 
-    function postMeal (data) {
-
+    function postMeal (d) {
+      console.log('data---------------------------------------->',data)
       return $http({
       method: 'POST',
       url: '/api/in/meals',
@@ -43,10 +44,8 @@
 
     }
 
-    // function somefunction() {
-      
-    // }
-    // you can have as many of these as needed
+    postMeal(data);
+
   }
 
 })();

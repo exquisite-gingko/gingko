@@ -10,6 +10,8 @@ module.exports = function(dbController, passport, isLoggedIn) {
 //------------------------------------------------------//
   //posting to the query file which will post to the meals database details of a new event
   router.post('/meals', function(req, res) {
+
+    console.log('--------------in routes', req.body.firstName);
     //make an object of all the values that we need
     var meal = classes.Meal(req.body);
     //if the values are not valid then send err
@@ -20,11 +22,11 @@ module.exports = function(dbController, passport, isLoggedIn) {
     dbController.meals.post(meal)
     .then(function(data){
       res.status(200).send(data);
-    })
-    .catch(function(err) {
-      console.log('err posting meal data:', err);
-      res.send(err);
     });
+    // .catch(function(err) {
+    //   console.log('err posting meal data:', err);
+    //   res.status(500).send(err);
+    // });
     
   });
 
