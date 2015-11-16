@@ -39,7 +39,7 @@
                   lat: item.location.coordinate.latitude,
                   lng: item.location.coordinate.longitude
                 }
-              })
+              });
             }
           });
         }, function(response) {
@@ -49,8 +49,8 @@
         })
         .then(function(response) {
           return self.data;
-        })
-    }
+        });
+    };
 
     self.add = function () {
       console.log(self.selectedItem);
@@ -65,6 +65,6 @@
       //   // TODO: Need to clear out the selected area after submission
       //   self.selectedItem = '';
       // })
-    }
+    };
 }
 })();

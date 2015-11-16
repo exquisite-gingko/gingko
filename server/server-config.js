@@ -25,9 +25,13 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use('/api/in', inRouter);
-app.use('/api/out', outRouter);
+//these need to be above the route where they are used I think?? 
+//http://stackoverflow.com/questions/29600759/passport-initialize-middleware-not-in-use-for-express-4-10-for-custom-callback
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use('/api/out', outRouter);
+
 
 app.use(express.static(path.join(__dirname, '/../client')));
 

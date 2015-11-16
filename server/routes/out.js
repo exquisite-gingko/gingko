@@ -6,7 +6,7 @@ var n = require('nonce')();
 var qs = require('querystring');
 var Promise = require('bluebird');
 
-var auth = require('../services/auth.js');
+var auth = require('../services/auth-temp.js');
 
 var request_yelp = function(set_parameters, callback) {
   // set_parameters: object with params to search
@@ -76,7 +76,7 @@ module.exports = function(db, passport, isLoggedIn) {
       } else {
         res.send(JSON.parse(body).businesses);
       }
-    })
+    });
   });
 
   router.get('/', function(req, res) {
