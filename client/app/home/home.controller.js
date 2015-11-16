@@ -10,9 +10,9 @@
   function HomeCtrl(homeFactory) {
     var self = this;
 
-    self.postData = function() {
+    self.getData = function() {
       //call the factory function
-      homeFactory.postMeal();
+      homeFactory.getMeals();
     };
 
     // Bjarke's demo data included here, repeated data should be moved to factory file

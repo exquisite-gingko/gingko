@@ -45,24 +45,26 @@ module.exports = {
   meals: {
 
     get: function (data) {
-      database.Meals.findAll({ include: [database.Users, database.Restaurants]})
+      console.log('getting meals!! in controllers fn--------------')
+      return database.Meals.findAll({ include: [database.Users, database.Restaurants]})
         .then(function (meals) {
           //use the bluebird promise functions
           return Promise.map(meals, function(meal) {
             return meal.getUsers().then(function(result) {
               var mealObj = {meal: meal, attendees: result};
+              console.log('meal obj', mealObj);
               return mealObj;
             });
           });
         }).then(function(meals) {
-          res.json(meals);
+          console.log('----------------->>>>>>>>',meal);
+          return meals;
         });
     },
 
     post: function (data) {
       return database.Users.findOrCreate({where: {firstName: data.firstName, lastName: data.lastName}})
         .then(function (user) {
-          console.log("rest name:----------------------------------------- ",data);
           return database.Restaurants.findOrCreate({where: {name: data.restaurant}, defaults:  {name: data.restaurant, address: data.address, contact: data.contact}})
             .then(function (restaurant) {
               return database.Meals.create({
