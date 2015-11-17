@@ -34,8 +34,6 @@
   max-height: 10px;
 }
 
-#map {
-  width: 400px;
-  height: 400px;
-  display: inline-block;
+.map, #map {
+  position: relative;
 }
