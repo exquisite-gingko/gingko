@@ -1,13 +1,28 @@
-<div id="home" ng-controller='HomeCtrl as home'>
+<div id="home" ng-controller='HomeCtrl as home' ng-cloak>
 <!-- in order to use the self properties, you must specify controller as a variable   -->
   <span>
     <h3>Here are some upcoming events!</h3>
   </span>
-  
-  <button ng-click="home.getData()">CLICK ME!</button>
- <!--  <div class='event-list' ng-repeat='event in home.events'>
-    <span> Location: {{ event.restaurant }} </span>
-    <div> Host: {{ event.host }} </div>
-  </div> -->
+
+  <div ng-repeat="event in home.events">
+    <md-card class="colour">
+      <md-card-content>
+        <h2 class="md-title">{{event.title}}</h2>
+        <p>
+          {{event.description}}
+        </p>
+        <p>
+          {{event.date}}
+        </p>
+         <p>
+          {{event.time}}
+        </p>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button>View More</md-button>
+      </md-card-actions>
+    </md-card>
+
+  </div>
 
 </div>

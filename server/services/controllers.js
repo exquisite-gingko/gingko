@@ -57,9 +57,9 @@ module.exports = {
           });
         }).then(function(meals) {
           //make an object to send back
-          var obj = {};
+          var obj = [];
           meals.map(function(meal, i) {
-            obj[i] = new objectify.restaurantData(meal);
+            obj.push(new objectify.restaurantData(meal));
           });
           return obj;
         });
@@ -72,12 +72,6 @@ module.exports = {
         .then(function (meal) {
           console.log('***********', meal);
           return meal;
-          // return Promise.map(meal, function(meal) {
-          //   return meal.getUsers().then(function(result) {
-          //     var mealObj = {meal: meal, attendees: result};
-          //     return mealObj;
-          //   });
-          // });
         })
         .then(function(meal) {
           res.json(meal);
@@ -91,9 +85,9 @@ module.exports = {
     },
 
     post: function (data) {
-      return database.Users.findOrCreate({where: {firstName: data.firstName, lastName: data.lastName}})
+      return database.Users.findOrCreate({where: {username: data.username}})
         .then(function (user) {
-          return database.Restaurants.findOrCreate({where: {name: data.restaurant}, defaults:  {name: data.restaurant, address: data.address, contact: data.contact}})
+          return database.Restaurants.findOrCreate({where: {name: data.restaurant}, defaults:  {name: data.restaurant, address: data.address, contact: data.contact, lat: data.latitude, lng: data.longitude}})
             .then(function (restaurant) {
               return database.Meals.create({
                 title: data.title,

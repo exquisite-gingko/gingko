@@ -1,8 +1,20 @@
-#home, #search, #user, #meal {
+#home, #user, #meal {
   padding: 10%;
   text-align: center;
 }
 
-.md-datepicker-button {
-  width: 36px; 
+.validation-messages {
+    font-size: 11px;
+    color: darkred;
+    margin: 10px 0 0 25px;
+}
+
+#search {
+  padding-right: 25%;
+  padding-left: 25%;
+  margin: 10px;
+}
+
+.colour {
+  background-color: #F0F0F0;
 }

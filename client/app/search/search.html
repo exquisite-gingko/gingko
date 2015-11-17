@@ -1,78 +1,77 @@
 <div id="search">
-  <div ng-controller="SearchCtrl as vm" layout="column" ng-cloak>
+  <div ng-controller="SearchCtrl as vm" layout="column" ng-cloak class="md-inline-form">
     <md-content layout-padding layout="column">
-      <form ng-submit="$event.preventDefault(); vm.add()">
+      <form ng-submit="vm.add()">
+        <md-card class="search-card">
+          <!-- user event details start -->
+            <md-input-container flex>
+              <label>Your TableSurfers Event Name</label>
+              <textarea ng-model="vm.meal.title" columns="1" rows="1"></textarea>
+            </md-input-container>
 
-        <md-input-container flex>
-          <label>Name your event</label>
-          <textarea ng-model="vm.meal.name" columns="1" rows="1"></textarea>
-        </md-input-container>
+            <!-- md autocomplete settings + start -->
+            <md-autocomplete
+                md-selected-item="vm.meal.restaurant"
+                md-search-text="vm.searchText"
+                md-items="item in vm.querySearch(vm.searchText)"
+                md-item-text="item.name"
+                md-min-length="1"
+                md-floating-label="Where do you want to eat? Search Yelp."
+                md-menu-class="autocomplete-search">
+              <span md-highlight-text="vm.searchText">{{item.name}}</span>
+              <!-- autocomplete display start -->
+              <md-item-template>
+                <span class="item-name">
+                  <span><strong> {{item.name}} </strong></span>
+                </span>
+                <span class="item-metadata">
+                  <span class="item-metastat">
+                    <span>phone {{item.phone}}</span>
+                  </span>
+                </span>
+              </md-item-template>
+              <md-not-found>
+                <span>Sorry, no resturaunts found! Please try again!</span>
+              </md-not-found>
+              <!-- autcomplete display end -->
+            </md-autocomplete>
+            <!-- md autocomplete settings end -->
 
-        <!-- md autocomplete settings + start -->
-        <md-autocomplete
-            md-selected-item="vm.meal.restaurant"
-            md-search-text="vm.searchText"
-            md-items="item in vm.querySearch(vm.searchText)"
-            md-item-text="item.name"
-            md-min-length="1"
-            md-floating-label="Search for a resturaunt..."
-            md-menu-class="autocomplete-search">
-            <!-- md-search-text-change="searchTextChange(vm.searchText)" -->
-            <!-- md-selected-item-change="vm.selectedItemChange(item)" -->
-
-          <span md-highlight-text="vm.searchText">{{item.name}}</span>
-          <!-- autocomplete display start -->
-          <md-item-template>
-            <span class="item-name">
-              <span><strong> {{item.name}} </strong></span>
+            <!-- md-datepicker, span required to prevent rolling off edge -->
+            <span>
+              <md-datepicker
+                ng-model="vm.meal.date"
+                ng-required="true"
+                md-placeholder="Enter Date"
+                aria-haspopup="true">
+              </md-datepicker>
             </span>
-            <span class="item-metadata">
-              <span class="item-metastat">
-                <span>phone {{item.phone}}</span>
-              </span>
-            </span>
-          </md-item-template>
-          <md-not-found>
-            <span>Sorry, no resturaunts found! Please try again!</span>
-          </md-not-found>
-          <!-- autcomplete display end -->
 
-        </md-autocomplete>
-        <!-- md autocomplete settings end -->
+            <!-- time input -->
+            <md-input-container flex>
+              <input type="time" ng-model="vm.meal.time" placeholder="What time do you want to host?">
+            </md-input-container>
 
-        <!-- user event details start -->
-
-        <div layout layout-sm="column">
-          <md-input-container flex>
-            <md-datepicker ng-model="vm.meal.date" md-placeholder="Select a date"></md-datepicker>
-          </md-input-container>
-          <md-input-container flex>
-            <input type="time" ng-model="vm.meal.time" placeholder="Choose a time">
-          </md-input-container>
-        </div>
-
-        <div layout layout-sm="column">
-          <md-input-container flex>
-           <md-select ng-model="vm.meal.attendees" placeholder="Set number of attendees">
-            <md-option ng-value="number" ng-repeat="number in vm.attendees">{{ number }}</md-option>
-           </md-select>
-          </md-input-container>
-        </div>
+            <!-- num of attendess -->
+            <md-select ng-model="vm.meal.attendees" placeholder="How many other Surfers can join?">
+              <md-option ng-value="number" ng-repeat="number in vm.attendees">{{ number }}</md-option>
+            </md-select>
 
 
-        <md-input-container flex>
-          <label>Write a description</label>
-          <textarea ng-model="vm.meal.eventDescription" columns="1" md-maxlength="300" rows="5"></textarea>
-        </md-input-container>
+            <!-- event desc. -->
+            <md-input-container flex>
+              <label>Please describe your TS meal:</label>
+              <textarea ng-model="vm.meal.description" columns="1" md-maxlength="300" rows="5"></textarea>
+            </md-input-container>
 
+          <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+            <md-button type="submit" class="md-raised md-primary" ng-disabled="!vm.meal.title || !vm.meal.restaurant || !vm.meal.date || !vm.meal.time || !vm.meal.attendees || !vm.meal.description">Add</md-button>
+          </section>
+        </md-card>
         <!-- user submission end -->
 
-        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-          <md-button class="md-raised md-primary" ng-disabled="!vm.meal.name || !vm.meal.restaurant || !vm.meal.date || !vm.meal.time || !vm.meal.attendees || !vm.meal.eventDescription">Add</md-button>
-        </section>
       </form>
     </md-content>
   </div>
-
 
 </div>

@@ -46,15 +46,23 @@ Meals.belongsTo(Users);
 var Restaurants = db.define("Restaurants", {
   name: {
     type: Sequelize.STRING,
-    allowNull: true
+    allowNull: false
   },
   address: {
-    type: Sequelize.STRING,
-    allowNull: true
+    type: Sequelize.ARRAY(Sequelize.STRING),
+    allowNull: false
   },
   contact: {
     type: Sequelize.STRING,
-    allowNull: true
+    allowNull: false
+  },
+  lat: {
+    type: Sequelize.FLOAT,
+    allowNull: false
+  },
+  lng: {
+    type: Sequelize.FLOAT,
+    allowNull: false
   }
   //latitude
   //longitude
@@ -83,7 +91,7 @@ Meals.belongsToMany(Users, {through: 'Attendees'});
 
 
 
-db.sync();
+db.sync({force: true});
 
 exports.Meals = Meals;
 exports.Users = Users;
