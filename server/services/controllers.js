@@ -14,8 +14,7 @@ module.exports = {
 
     post: function (data) {
       return database.Users.create({
-        firstName: data.firstName,
-        lastName: data.lastName,
+        username: data.displayName,
         facebookId: data.facebookId
       }).then(function (message) {
         return message;

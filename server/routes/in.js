@@ -11,6 +11,7 @@ module.exports = function(dbController, passport, isLoggedIn) {
   //posting to the query file which will post to the meals database details of a new event
   router.post('/meals', function(req, res) {
 
+
     //make an object of all the values that we need
     var meal = classes.Meal(req.body);
     console.log(req.body);

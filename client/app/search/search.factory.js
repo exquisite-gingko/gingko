@@ -3,11 +3,11 @@
   'use strict';
 
   angular.module('app')
-  .factory('homeFactory', homeFactory);
+  .factory('searchFactory', searchFactory);
 
-  homeFactory.$inject = ['$http', '$window'];
+  searchFactory.$inject = ['$http', '$window'];
 
-  function homeFactory($http, $window) {
+  function searchFactory($http, $window) {
     var services = {
 
       activate : activate,
@@ -28,6 +28,7 @@
         data: data
       })
       .then(function (response) {
+        console.log("successfully posted!");
         return response.data;
       });
     }
