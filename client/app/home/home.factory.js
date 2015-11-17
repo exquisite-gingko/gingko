@@ -44,18 +44,13 @@
 
     // }
 
-
     function getMeals () {
       return $http({
       method: 'GET',
       url: '/api/in/meals'
       })
       .then(function (response) {
-        var arrOfData = [];
-        for (var key in response.data) {
-          arrOfData.push(response.data);
-        }
-        console.log('--------------response returned!!---------', arrOfData);
+        console.log(response.data)
         return response.data;
       });
     }

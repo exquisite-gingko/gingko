@@ -58,9 +58,9 @@ module.exports = {
           });
         }).then(function(meals) {
           //make an object to send back
-          var obj = {};
+          var obj = [];
           meals.map(function(meal, i) {
-            obj[i] = new objectify.restaurantData(meal);
+            obj.push(new objectify.restaurantData(meal));
           });
           return obj;
         });

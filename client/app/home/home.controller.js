@@ -12,19 +12,16 @@
 
     self.getData = function() {
       //call the factory function
-      var dataObj = homeFactory.getMeals();
-      // homeFactory.postMeal();
-
+      homeFactory.getMeals()
+      .then(function(data) {
+        self.events = data;
+      });
+      
     };
 
-    self.events = [{
-        host: 'Bjarke',
-        restaurant: 'Nobu',
-        Location: '505 Market Street, San Francisco',
-        Date: 'November 20, 2015',
-        time: '20:30',
-        guests: 3
-    }];
+    self.events = [];
+
+    self.getData();
 
   }
 

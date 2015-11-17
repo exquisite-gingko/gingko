@@ -3,11 +3,26 @@
   <span>
     <h3>Here are some upcoming events!</h3>
   </span>
-  
-  <button ng-click="home.getData()">CLICK ME!</button>
 
-  <div ng-repeat="event in events">
-    <div> {{ event }} </div>
+  <div ng-repeat="event in home.events">
+    <md-card class="colour">
+      <md-card-content>
+        <h2 class="md-title">{{event.title}}</h2>
+        <p>
+          {{event.description}}
+        </p>
+        <p>
+          {{event.date}}
+        </p>
+         <p>
+          {{event.time}}
+        </p>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button>View More</md-button>
+      </md-card-actions>
+    </md-card>
+
   </div>
 
 </div>
