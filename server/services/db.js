@@ -9,7 +9,7 @@ var db = new Sequelize("tablesurfer", "admin", "admin", {
 
 var Users = db.define("Users", {
   //here we will have to figure out the data from facebook on authentication
-  ssername: {
+  username: {
     type: Sequelize.STRING,
     allowNull: false
   },

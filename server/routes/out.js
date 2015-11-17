@@ -54,9 +54,7 @@ module.exports = function(db, passport, isLoggedIn) {
   router.get('/login', passport.authenticate('facebook', { scope: 'email' }));
 
   router.get('/login/callback', passport.authenticate('facebook', { failureRedirect: '/' }), function (req, res) {
-    console.log('req ', req.session.passport.user);
-    console.log('res ', req.session.passport.user);
-    res.redirect('/');
+    res.redirect('/?' + JSON.stringify(req.user.dataValues.username));
   });
 
   router.get('/logout', function (req, res) {
