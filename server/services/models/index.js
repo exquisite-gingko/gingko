@@ -1,3 +1,5 @@
+//This file would be used to use sequelize on heroku
+
 if (!global.hasOwnProperty('db')) {
   var Sequelize = require('sequelize')
     , sequelize = null
