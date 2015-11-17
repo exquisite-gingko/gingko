@@ -12,13 +12,11 @@ var Users = db.define("Users", {
   username: {
     type: Sequelize.STRING,
     allowNull: false
+  },
+  facebookId: {
+    type: Sequelize.STRING,
+    allowNull: false
   }
-
-  //TO ADD:
-  // facebookId: {
-  //   type: Sequelize.STRING,
-  //   allowNull: false
-  // }
   
 });
 

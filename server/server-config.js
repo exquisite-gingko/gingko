@@ -35,7 +35,6 @@ app.use(passport.session());
 
 app.use('/api/out', outRouter);
 
-
 app.use(express.static(path.join(__dirname, '/../client')));
 
 module.exports = app;

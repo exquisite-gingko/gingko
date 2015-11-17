@@ -28,6 +28,7 @@
     "chai": "^3.4.1",
     "cors": "^2.7.1",
     "express": "^4.13.3",
+    "express-flash": "git://github.com/RGBboy/express-flash.git",
     "express-route": "^0.1.4",
     "grunt": "^0.4.5",
     "grunt-contrib-concat": "^0.5.1",
