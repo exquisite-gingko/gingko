@@ -73,12 +73,6 @@ module.exports = {
         .then(function (meal) {
           console.log('***********', meal);
           return meal;
-          // return Promise.map(meal, function(meal) {
-          //   return meal.getUsers().then(function(result) {
-          //     var mealObj = {meal: meal, attendees: result};
-          //     return mealObj;
-          //   });
-          // });
         })
         .then(function(meal) {
           res.json(meal);
