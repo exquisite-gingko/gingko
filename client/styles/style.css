@@ -1,12 +1,8 @@
-#home, #meal {
-  padding: 10%;
+#user, #home, #meal {
+  padding-top: 20px;
   text-align: center;
-}
-
-.validation-messages {
-    font-size: 11px;
-    color: darkred;
-    margin: 10px 0 0 25px;
+  padding-right: 10%;
+  padding-left: 10%;
 }
 
 #search {
@@ -15,20 +11,18 @@
   margin: 10px;
 }
 
-#user {
-  padding-top: 5%;
-  text-align: center;
-  padding-right: 10%;
-  padding-left: 10%;
-}
-
 .headshot {
   width: 20%;
   height: 20%;
 }
 
+.validation-messages {
+  font-size: 11px;
+  color: darkred;
+  margin: 10px 0 0 25px;
+}
+
 #user .user-details {
-  padding-top: 10px;
   padding-bottom: 10px;
   text-align: left;
 
