@@ -56,7 +56,7 @@
     };
 
     self.add = function () {
-
+      // console.log(self.meal);
       searchFactory.postMeal(self.meal);
 
     };

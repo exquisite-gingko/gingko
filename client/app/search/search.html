@@ -1,12 +1,12 @@
 <div id="search">
   <div ng-controller="SearchCtrl as vm" layout="column" ng-cloak class="md-inline-form">
     <md-content layout-padding layout="column">
-      <form ng-submit="$event.preventDefault(); vm.add()">
+      <form ng-submit="vm.add()">
         <md-card class="search-card">
           <!-- user event details start -->
             <md-input-container flex>
               <label>Your TableSurfers Event Name</label>
-              <textarea ng-model="vm.meal.name" columns="1" rows="1"></textarea>
+              <textarea ng-model="vm.meal.title" columns="1" rows="1"></textarea>
             </md-input-container>
 
             <!-- md autocomplete settings + start -->
@@ -61,15 +61,15 @@
             <!-- event desc. -->
             <md-input-container flex>
               <label>Please describe your TS meal:</label>
-              <textarea ng-model="vm.meal.eventDescription" columns="1" md-maxlength="300" rows="5"></textarea>
+              <textarea ng-model="vm.meal.description" columns="1" md-maxlength="300" rows="5"></textarea>
             </md-input-container>
 
+          <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+            <md-button type="submit" class="md-raised md-primary" ng-disabled="!vm.meal.title || !vm.meal.restaurant || !vm.meal.date || !vm.meal.time || !vm.meal.attendees || !vm.meal.description">Add</md-button>
+          </section>
         </md-card>
         <!-- user submission end -->
 
-        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-          <md-button class="md-raised md-primary" ng-disabled="!vm.meal.title || !vm.meal.restaurant || !vm.meal.date || !vm.meal.time || !vm.meal.attendees || !vm.meal.description">Add</md-button>
-        </section>
       </form>
     </md-content>
   </div>
