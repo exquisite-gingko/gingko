@@ -53,6 +53,16 @@ server
   --- server.js
 ```
 
+## Style
+
+Using the Angular team approved style guide by John Papa. App was designed with modularity and code reuse in mind.
+
+[Angular Style Guide](http://www.johnpapa.net/angular-style-guide/)
+
+General JavaScript code styling was following the industry-approved Airbnb method.
+
+[Airbnb Style Guide](https://github.com/airbnb/javascript)
+
 ## Database
 
 > ***Important***: Please follow the directions in order to setup the necessary local user and PostgreSQL database - proper local functionality and testing relies on this.
