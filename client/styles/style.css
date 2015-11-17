@@ -29,3 +29,7 @@
 .colour {
   background-color: #F0F0F0;
 }
+
+.facebook-img {
+  max-height: 10px;
+}
