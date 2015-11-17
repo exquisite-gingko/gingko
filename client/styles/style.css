@@ -1,12 +1,8 @@
-#home, #user, #meal {
-  padding: 10%;
+#user, #home, #meal {
+  padding-top: 20px;
   text-align: center;
-}
-
-.validation-messages {
-    font-size: 11px;
-    color: darkred;
-    margin: 10px 0 0 25px;
+  padding-right: 10%;
+  padding-left: 10%;
 }
 
 #search {
@@ -15,6 +11,29 @@
   margin: 10px;
 }
 
+.headshot {
+  width: 20%;
+  height: 20%;
+}
+
+.validation-messages {
+  font-size: 11px;
+  color: darkred;
+  margin: 10px 0 0 25px;
+}
+
+#user .user-details {
+  padding-bottom: 10px;
+  text-align: left;
+
 .colour {
   background-color: #F0F0F0;
+}
+
+.facebook-img {
+  max-height: 10px;
+}
+
+.map, #map {
+  position: relative;
 }

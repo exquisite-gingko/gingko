@@ -15,7 +15,7 @@ var Users = db.define("Users", {
   },
   facebookId: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: true
   }
   
 });
@@ -91,7 +91,7 @@ Meals.belongsToMany(Users, {through: 'Attendees'});
 
 
 
-db.sync({force: true});
+db.sync();
 
 exports.Meals = Meals;
 exports.Users = Users;

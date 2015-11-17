@@ -61,27 +61,22 @@ module.exports = {
           meals.map(function(meal, i) {
             obj.push(new objectify.restaurantData(meal));
           });
+          // console.log('----------',meals);
           return obj;
         });
     },
 
     getOne: function (data) {
-      // data being passed in is the meal's ID number that should be retrieved
-      console.log('getOne should be finding this one: ', data);
-      database.Meals.findById(data)
+
+      return database.Meals.find({ where: {id: data}, include: [database.Users, database.Restaurants] })
         .then(function (meal) {
-          console.log('***********', meal);
-          return meal;
-        })
-        .then(function(meal) {
-          res.json(meal);
-        })
-        // .then(function(meal) {
-        //   if (meal === null) {
-        //     res.sendStatus(404);
-        //   }
-        //   // res.json(meals)
-        // })
+          return meal.getUsers().then(function (result) {
+            var mealObj = {meal: meal, Attendees: result};
+            console.log(mealObj);
+            return mealObj;
+          });
+
+        });
     },
 
     post: function (data) {

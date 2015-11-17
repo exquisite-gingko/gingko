@@ -9,10 +9,11 @@
 
   MealCtrl.$inject = ['$http', '$location', '$window'];
 
-  function MealCtrl($http, $location, $window) {
+  function MealCtrl($http, $location, $window, Map) {
     var self = this;
     self.id = $location.path();
-
+    self.data;
+    var map;
 
     self.activate = function() {
       self.getMeal();
@@ -27,7 +28,17 @@
       })
       .then(function(response) {
         console.log(' ******** RESPONSE RETURNED **********');
-        console.log('Get users data is here, resp.data: ', response.data);
+        console.log('Get users data is here, resp.data: ', response);
+        self.data = response.data;
+        console.log(self.data);
+
+        var mapCanvas = document.getElementById('map');
+        var mapOptions = {
+          center: new google.maps.LatLng(self.data.meal.Restaurant.lat, self.data.meal.Restaurant.lng),
+          zoom: 12,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(mapCanvas, mapOptions);
       });
     };
 
