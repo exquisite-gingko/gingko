@@ -5,9 +5,9 @@
   .controller('HomeCtrl', HomeCtrl);
 
   // if factories are needed, inject here
-  HomeCtrl.$inject = ['homeFactory'];
+  HomeCtrl.$inject = ['homeFactory', '$state', "$location", "$window"];
 
-  function HomeCtrl(homeFactory) {
+  function HomeCtrl(homeFactory, $state, $location, $window) {
     var self = this;
 
     self.getData = function() {
@@ -20,13 +20,18 @@
     };
 
     self.routeToEvent = function() {
-      console.log('button TIME!');
       homeFactory.getEvent()
+      .then(function(data) {
+        console.log('hello');
+        // $location.url('/home');
+        $window.location.href = "/#/meals/1";
+      });
     };
 
     self.events = [];
 
     self.getData();
+
 
 
   }
