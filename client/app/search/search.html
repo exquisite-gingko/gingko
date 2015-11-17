@@ -57,6 +57,7 @@
               <md-option ng-value="number" ng-repeat="number in vm.attendees">{{ number }}</md-option>
             </md-select>
 
+
             <!-- event desc. -->
             <md-input-container flex>
               <label>Please describe your TS meal:</label>
@@ -67,7 +68,7 @@
         <!-- user submission end -->
 
         <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-          <md-button class="md-raised md-primary" ng-disabled="!vm.meal.name || !vm.meal.restaurant || !vm.meal.date || !vm.meal.time || !vm.meal.attendees || !vm.meal.eventDescription">Add</md-button>
+          <md-button class="md-raised md-primary" ng-disabled="!vm.meal.title || !vm.meal.restaurant || !vm.meal.date || !vm.meal.time || !vm.meal.attendees || !vm.meal.description">Add</md-button>
         </section>
       </form>
     </md-content>

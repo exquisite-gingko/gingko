@@ -13,7 +13,7 @@
     // below are settings for the md-autocomplete directive
     self.simulateQuery = false;
     self.isDisabled = false;
-    self.meal = {};
+    self.meal = {username: 'aackerman'};
     self.attendees = [1,2,3,4,5,6,7,8,9];
     self.selectedItem = undefined;
 

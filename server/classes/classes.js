@@ -12,28 +12,31 @@ module.exports = {
     obj.date = body.date;
     obj.time = body.time;
 
-    if (typeof body.description === "string" && body.firstName.length >0) {
+    if (typeof body.description === "string") {
       obj.description = body.description;
     } else {
       return false;
     }
 
-    obj.restaurant = body.restaurant;
+    obj.restaurant = body.restaurant.name;
+    obj.address = body.restaurant.display_address;
+    obj.contact = body.restaurant.phone;
+    obj.latitude = body.restaurant.coordinate.lat;
+    obj.longitude = body.restaurant.coordinate.lng;
     
-    if (typeof body.firstName === "string" && body.firstName.length > 0) {
-      obj.firstName = body.firstName.toLowerCase();
+    if (typeof body.username === "string" && body.username.length > 0) {
+      obj.username = body.username;
     } else {
       return false;
     }
 
-    if (typeof body.lastName === "string" && body.firstName.length >0) {
-      obj.lastName = body.lastName;
-    } else {
-      return false;
-    }
+    // if (typeof body.lastName === "string" && body.firstName.length >0) {
+    //   obj.lastName = body.lastName;
+    // } else {
+    //   return false;
+    // }
 
-    obj.address = body.address;
-    obj.contact = body.contact;
+
 
     return obj;
   },
