@@ -91,9 +91,9 @@ module.exports = {
     },
 
     post: function (data) {
-      return database.Users.findOrCreate({where: {firstName: data.firstName, lastName: data.lastName}})
+      return database.Users.findOrCreate({where: {username: data.username}})
         .then(function (user) {
-          return database.Restaurants.findOrCreate({where: {name: data.restaurant}, defaults:  {name: data.restaurant, address: data.address, contact: data.contact}})
+          return database.Restaurants.findOrCreate({where: {name: data.restaurant}, defaults:  {name: data.restaurant, address: data.address, contact: data.contact, lat: data.latitude, lng: data.longitude}})
             .then(function (restaurant) {
               return database.Meals.create({
                 title: data.title,

@@ -9,14 +9,16 @@ var db = new Sequelize("tablesurfer", "admin", "admin", {
 
 var Users = db.define("Users", {
   //here we will have to figure out the data from facebook on authentication
-  ssername: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  facebookId: {
+  username: {
     type: Sequelize.STRING,
     allowNull: false
   }
+
+  //TO ADD:
+  // facebookId: {
+  //   type: Sequelize.STRING,
+  //   allowNull: false
+  // }
   
 });
 
@@ -46,15 +48,23 @@ Meals.belongsTo(Users);
 var Restaurants = db.define("Restaurants", {
   name: {
     type: Sequelize.STRING,
-    allowNull: true
+    allowNull: false
   },
   address: {
-    type: Sequelize.STRING,
-    allowNull: true
+    type: Sequelize.ARRAY(Sequelize.STRING),
+    allowNull: false
   },
   contact: {
     type: Sequelize.STRING,
-    allowNull: true
+    allowNull: false
+  },
+  lat: {
+    type: Sequelize.FLOAT,
+    allowNull: false
+  },
+  lng: {
+    type: Sequelize.FLOAT,
+    allowNull: false
   }
   //latitude
   //longitude
