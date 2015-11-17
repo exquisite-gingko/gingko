@@ -19,7 +19,7 @@
   function homeFactory($http) {
     var services = {
       
-      activate : activate,
+      //activate : activate,
       getMeals : getMeals,
       postMeal: postMeal
 
@@ -27,9 +27,9 @@
 
     return services;
 
-    function activate () {
-      // postMeal();
-    }
+    // function activate () {
+    //   getMeals();
+    // }
 
     function postMeal (d) {
       return $http({
@@ -44,20 +44,17 @@
 
     }
 
-    postMeal();
-
     function getMeals () {
       return $http({
       method: 'GET',
       url: '/api/in/meals'
       })
       .then(function (response) {
-        console.log('--------------response returned!!---------', response.data);
+        console.log(response.data)
         return response.data;
       });
     }
 
-    getMeals();
 
   }
 
