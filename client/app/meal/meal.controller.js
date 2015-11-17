@@ -28,7 +28,7 @@
       })
       .then(function(response) {
         console.log(' ******** RESPONSE RETURNED **********');
-        console.log('Get users data is here, resp.data: ', response.data);
+        console.log('Get users data is here, resp.data: ', response);
         self.data = response.data;
       });
     };
