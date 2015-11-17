@@ -33,12 +33,23 @@
         console.log(self.data);
 
         var mapCanvas = document.getElementById('map');
+        var myLatLng = {lat: self.data.meal.Restaurant.lat, lng: self.data.meal.Restaurant.lng};
         var mapOptions = {
           center: new google.maps.LatLng(self.data.meal.Restaurant.lat, self.data.meal.Restaurant.lng),
           zoom: 12,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
+
         map = new google.maps.Map(mapCanvas, mapOptions);
+
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          title: "hello world!"
+        });
+
+        marker.setMap(map);
+
+
       });
     };
 
