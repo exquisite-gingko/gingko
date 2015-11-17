@@ -66,13 +66,15 @@ module.exports = {
     },
 
     getOne: function (data) {
-      // data being passed in is the meal's ID number that should be retrieved
-      console.log('getOne should be finding this one: ', data);
+
       return database.Meals.findById(data)
         .then(function (meal) {
-          console.log('***********', meal);
-          return meal;
-        })
+          return meal.getUsers().then(function (result) {
+            var mealObj = {meal: meal, Attendees: result};
+            return mealObj;
+          });
+
+        });
     },
 
     post: function (data) {
