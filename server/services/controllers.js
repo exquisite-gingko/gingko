@@ -68,10 +68,11 @@ module.exports = {
 
     getOne: function (data) {
 
-      return database.Meals.findById(data)
+      return database.Meals.find({ where: {id: data}, include: [database.Users, database.Restaurants] })
         .then(function (meal) {
           return meal.getUsers().then(function (result) {
             var mealObj = {meal: meal, Attendees: result};
+            console.log(mealObj);
             return mealObj;
           });
 
