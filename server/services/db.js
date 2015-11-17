@@ -64,9 +64,7 @@ var Restaurants = db.define("Restaurants", {
     type: Sequelize.FLOAT,
     allowNull: false
   }
-  //latitude
-  //longitude
-  //rating?
+
 });
 
 //this creates restaurant foreign key for meal
