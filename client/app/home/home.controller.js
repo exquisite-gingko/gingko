@@ -19,13 +19,15 @@
       
     };
 
-    // self.getData = function() {
-
-    // };
+    self.routeToEvent = function() {
+      console.log('button TIME!');
+      homeFactory.getEvent()
+    };
 
     self.events = [];
 
     self.getData();
+
 
   }
 

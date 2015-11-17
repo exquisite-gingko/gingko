@@ -61,6 +61,7 @@ module.exports = {
           meals.map(function(meal, i) {
             obj.push(new objectify.restaurantData(meal));
           });
+          // console.log('----------',meals);
           return obj;
         });
     },
