@@ -5,7 +5,7 @@
 
         <md-input-container flex>
           <label>Name your event</label>
-          <textarea ng-model="vm.meal.name" columns="1" rows="1"></textarea>
+          <textarea ng-model="vm.meal.title" columns="1" rows="1"></textarea>
         </md-input-container>
 
         <!-- md autocomplete settings + start -->
@@ -62,13 +62,13 @@
 
         <md-input-container flex>
           <label>Write a description</label>
-          <textarea ng-model="vm.meal.eventDescription" columns="1" md-maxlength="300" rows="5"></textarea>
+          <textarea ng-model="vm.meal.description" columns="1" md-maxlength="300" rows="5"></textarea>
         </md-input-container>
 
         <!-- user submission end -->
 
         <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-          <md-button class="md-raised md-primary" ng-disabled="!vm.meal.name || !vm.meal.restaurant || !vm.meal.date || !vm.meal.time || !vm.meal.attendees || !vm.meal.eventDescription">Add</md-button>
+          <md-button class="md-raised md-primary" ng-disabled="!vm.meal.title || !vm.meal.restaurant || !vm.meal.date || !vm.meal.time || !vm.meal.attendees || !vm.meal.description">Add</md-button>
         </section>
       </form>
     </md-content>
