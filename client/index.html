@@ -23,17 +23,22 @@
                 <md-tab-label>Add</md-tab-label>
               </md-tab>
               <!-- nav tab button for user profile -->
-              <md-tab ui-sref="user" id="user/user.html" aria-controls="Tab 2">
+              <md-tab ui-sref="user" id="user/user.html" aria-controls="Tab 3">
                 <md-tab-label>Account</md-tab-label>
               </md-tab>
+
+              <md-tab class="" id="facebook" aria-controls="Tab 4">
+                <a href="/api/out/login">
+                  <img class="facebook-img" src="http://i.stack.imgur.com/LKMP7.png" alt="" />
+                </a>
+              </md-tab>
+
            </md-tabs>
        </div>
     </md-toolbar>
     <!-- end nav -->
 
-    <div>
-      <a href="/api/out/login">log in with facebook</a>
-    </div>
+
 
     <!-- adding site and application content here -->
     <!-- TODO: Remember we are using state based ui-routing vs default ng-route -->
