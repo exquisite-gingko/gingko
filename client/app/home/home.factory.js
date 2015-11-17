@@ -7,21 +7,21 @@
 
   homeFactory.$inject = ['$http'];
 
-    var data = {"title":"Indian","date":"Mon Nov 25 2015 21:00:00 GMT-0800 (PST)",
-"time":"Mon Nov 25 2015 21:00:00 GMT-0800 (PST)",
-"description":"Time for some Curry",
-"restaurant":"Indian Palace",
-"address":"44 Haight Street",
-"contact":"83638202",
-"firstName":"David",
-"lastName":"Tsai"};
+//     var data = {"title":"Indian","date":"Mon Nov 25 2015 21:00:00 GMT-0800 (PST)",
+// "time":"Mon Nov 25 2015 21:00:00 GMT-0800 (PST)",
+// "description":"Time for some Curry",
+// "restaurant":"Indian Palace",
+// "address":"44 Haight Street",
+// "contact":"83638202",
+// "firstName":"David",
+// "lastName":"Tsai"};
 
   function homeFactory($http) {
     var services = {
       
       //activate : activate,
       getMeals : getMeals,
-      postMeal: postMeal
+      getEvent : getEvent
 
     };
 
@@ -31,17 +31,29 @@
     //   getMeals();
     // }
 
-    function postMeal (d) {
+    // function postMeal (d) {
+    //   return $http({
+    //   method: 'POST',
+    //   url: '/api/in/meals',
+    //   data: data
+    //   })
+    //   .then(function (response) {
+    //     console.log('response returned!!');
+    //     return response.data;
+    //   });
+
+    // }
+
+    function getEvent () {
+      console.log('in get event');
       return $http({
-      method: 'POST',
-      url: '/api/in/meals',
-      data: data
+      method: 'GET',
+      url: '/api/in/meals/1'
       })
       .then(function (response) {
-        console.log('response returned!!');
+        console.log('---------------------',response.data);
         return response.data;
       });
-
     }
 
     function getMeals () {
@@ -50,7 +62,7 @@
       url: '/api/in/meals'
       })
       .then(function (response) {
-        console.log(response.data)
+        console.log(response.data);
         return response.data;
       });
     }
