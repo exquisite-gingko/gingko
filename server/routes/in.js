@@ -46,7 +46,6 @@ module.exports = function(dbController, passport, isLoggedIn) {
     console.log('routing to db');
     dbController.meals.get()
     .then(function(data) {
-      console.log('-----------------in router---------------------');
       res.status(200).send(data);
     })
     .catch(function(err) {
