@@ -19,6 +19,10 @@
       
     };
 
+    // self.getData = function() {
+
+    // };
+
     self.events = [];
 
     self.getData();
