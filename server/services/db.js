@@ -93,7 +93,7 @@ Meals.belongsToMany(Users, {through: 'Attendees'});
 
 
 
-db.sync();
+db.sync({force: true});
 
 exports.Meals = Meals;
 exports.Users = Users;
