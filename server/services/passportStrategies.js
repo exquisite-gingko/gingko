@@ -6,11 +6,11 @@ var database = require('./db.js');
 module.exports = function (passport) {
   
   passport.serializeUser(function (user, done) {
-    done(null, user.id);
+    done(null, user);
   });
   
-  passport.deserializeUser(function (id, done) {
-    database.Users.find({ where: {id: id} })
+  passport.deserializeUser(function (user, done) {
+    database.Users.find({ where: {id: user.id} })
       .then(function(user) {
         done(err, user);
       });
@@ -29,7 +29,11 @@ module.exports = function (passport) {
         }
       })
       .then(function (user) {
-        return done(user);
+        done(null, user[0]);
+      })
+      .catch(function (err) {
+        console.log('err', err);
+        done();
       });
     });
   }));
