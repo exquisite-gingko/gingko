@@ -4,15 +4,17 @@
   angular.module('app')
   .controller('SearchCtrl', SearchCtrl);
 
-  SearchCtrl.$inject = ['$http', '$q', '$log', '$window'];
+  SearchCtrl.$inject = ['$http', '$q', '$log', '$window', 'searchFactory'];
 
-  function SearchCtrl($http, $q, $log, $window) {
+  function SearchCtrl($http, $q, $log, $window, searchFactory) {
     // TODO: Please verify that this matches the refactored style
 
     var self = this;
     // below are settings for the md-autocomplete directive
     self.simulateQuery = false;
     self.isDisabled = false;
+    self.meal = {username: 'aackerman'};
+    self.attendees = [1,2,3,4,5,6,7,8,9];
     self.selectedItem = undefined;
 
     self.querySearch = function(query) {
@@ -39,7 +41,7 @@
                   lat: item.location.coordinate.latitude,
                   lng: item.location.coordinate.longitude
                 }
-              })
+              });
             }
           });
         }, function(response) {
@@ -50,21 +52,14 @@
         .then(function(response) {
           return self.data;
         })
-    }
+
+    };
 
     self.add = function () {
-      console.log(self.selectedItem);
+      // console.log(self.meal);
+      searchFactory.postMeal(self.meal);
 
-      // TODO: Hook up functionality to insert selected item into DB.
+    };
 
-      // return $http({
-      //   method: 'POST',
-      //   url: '/api/in/meals',
-      //   data: self.selectedItem
-      // }).then(function(res) {
-      //   // TODO: Need to clear out the selected area after submission
-      //   self.selectedItem = '';
-      // })
-    }
 }
 })();

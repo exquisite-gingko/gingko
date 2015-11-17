@@ -53,10 +53,9 @@ module.exports = function(db, passport, isLoggedIn) {
 
   router.get('/login', passport.authenticate('facebook', { scope: 'email' }));
 
-  router.get('/login/callback', passport.authenticate('facebook', { failureRedirect: '/' }),
-    function (req, res) {
-      res.redirect('/');
-    });
+  router.get('/login/callback', passport.authenticate('facebook', { failureRedirect: '/' }), function (req, res) {
+    res.redirect('/?' + JSON.stringify(req.user.dataValues.username));
+  });
 
   router.get('/logout', function (req, res) {
     req.logout();
@@ -76,7 +75,7 @@ module.exports = function(db, passport, isLoggedIn) {
       } else {
         res.send(JSON.parse(body).businesses);
       }
-    })
+    });
   });
 
   router.get('/', function(req, res) {

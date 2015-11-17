@@ -1,23 +1,32 @@
 # tablesurfer
 
----
+## Team
+
+* **Product Owner**
+  * [David Tsai](https://github.com/tsaiDavid)
+* **Scrum Master**
+  * [Bjarke Staun](https://github.com/bjarkestaun)
+* **Development Team**
+  * [Anna Rogers](https://github.com/muddybarefeet)
+  * [Aaron Ackerman](https://github.com/aackerman050)
+  * [Bjarke Staun](https://github.com/bjarkestaun)
+  * [David Tsai](https://github.com/tsaiDavid)
 
 ## Tech Overview
 
 Simplified overview of project's tech stack:
 
->* Task Runner
+* **Task Runner**
   * Grunt
-* Client Side
+* **Client Side**
   * Angular
   * Angular Material
-* Server Side
+* **Server Side**
   * Node
   * Express
   * Postgres
   * Sequelize
 
----
 
 ## File Structure
 
@@ -44,7 +53,15 @@ server
   --- server.js
 ```
 
----
+## Style
+
+Using the Angular team approved style guide by John Papa. App was designed with modularity and code reuse in mind.
+
+[Angular Style Guide](http://www.johnpapa.net/angular-style-guide/)
+
+General JavaScript code styling was following the industry-approved Airbnb method.
+
+[Airbnb Style Guide](https://github.com/airbnb/javascript)
 
 ## Database
 
@@ -67,5 +84,3 @@ server
     * `CREATE DATABASE tablesurfer;`
 4. Double check that your ***Postgres.app*** is running from your OSX toolbar, it should indicate that the port you are using is ***5432***
 5. You're successfully setup for Postgres to use ***tablesurfer***!
-
----
