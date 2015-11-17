@@ -9,18 +9,17 @@ var db = new Sequelize("tablesurfer", "admin", "admin", {
 
 var Users = db.define("Users", {
   //here we will have to figure out the data from facebook on authentication
-  firstName: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  lastName: {
+  username: {
     type: Sequelize.STRING,
     allowNull: false
   }
+
+  //TO ADD:
   // facebookId: {
   //   type: Sequelize.STRING,
-  //   allowNull: true //this may not be with every user
+  //   allowNull: false
   // }
+  
 });
 
 var Meals = db.define("Meals", {
@@ -49,15 +48,23 @@ Meals.belongsTo(Users);
 var Restaurants = db.define("Restaurants", {
   name: {
     type: Sequelize.STRING,
-    allowNull: true
+    allowNull: false
   },
   address: {
-    type: Sequelize.STRING,
-    allowNull: true
+    type: Sequelize.ARRAY(Sequelize.STRING),
+    allowNull: false
   },
   contact: {
     type: Sequelize.STRING,
-    allowNull: true
+    allowNull: false
+  },
+  lat: {
+    type: Sequelize.FLOAT,
+    allowNull: false
+  },
+  lng: {
+    type: Sequelize.FLOAT,
+    allowNull: false
   }
   //latitude
   //longitude
@@ -86,7 +93,7 @@ Meals.belongsToMany(Users, {through: 'Attendees'});
 
 
 
-db.sync();
+db.sync({force: true});
 
 exports.Meals = Meals;
 exports.Users = Users;
