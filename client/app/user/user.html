@@ -1,8 +1,19 @@
-<div id="user" ng-controller='UserCtrl as user'>
+<div id="user" ng-controller='UserCtrl as user' layout="column">
 <!-- in order to use the self properties, you must specify controller as a variable   -->
   <span>
-    <h3>User Details Here</h3>
+    <h3>Your Account Details</h3>
   </span>
-
+  <md-card layout="row">
+    <img class="headshot" src="https://pbs.twimg.com/profile_images/629229175564472320/6mbAf0qX_400x400.jpg" alt="" layout="column">
+    <div class="user-details" layout="column">
+      <ul>
+        <li class="line-items"><strong>Name: </strong>Kyle Cho</li>
+        <li class="line-items"><strong>Job: </strong>Software Engineer</li>
+        <li class="line-items"><strong>Hobbies: </strong>Giving pro tips.</li>
+        <li class="line-items"><strong>Favorite Eatery: </strong>Sarku @ The Westfield</li>
+        <li class="line-items"><strong>Aspirations: </strong>President of 'murica</li>
+      </ul>
+    </div>
+  </md-card>
 
 </div>
