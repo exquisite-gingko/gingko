@@ -1,4 +1,4 @@
-#home, #user, #meal {
+#home, #meal {
   padding: 10%;
   text-align: center;
 }
@@ -14,6 +14,23 @@
   padding-left: 25%;
   margin: 10px;
 }
+
+#user {
+  padding-top: 5%;
+  text-align: center;
+  padding-right: 10%;
+  padding-left: 10%;
+}
+
+.headshot {
+  width: 20%;
+  height: 20%;
+}
+
+#user .user-details {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: left;
 
 .colour {
   background-color: #F0F0F0;
