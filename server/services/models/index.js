@@ -28,12 +28,6 @@ if (!global.hasOwnProperty('db')) {
       type: Sequelize.STRING,
       allowNull: false
     }
-
-    //TO ADD:
-    // facebookId: {
-    //   type: Sequelize.STRING,
-    //   allowNull: false
-    // }
     
   });
 
@@ -90,13 +84,14 @@ if (!global.hasOwnProperty('db')) {
   Restaurants.hasOne(Meals);
   Meals.belongsTo(Restaurants);
 
+//table not yet utilized but could be another method to filter/search by?!
   var Genres = sequelize.define("Genres", {
     name: {
       type: Sequelize.STRING,
       allowNull: false
     }
   });
-
+//added associations between the restaurants table and the genre table
   Genres.hasOne(Restaurants);
   Restaurants.belongsTo(Genres);
 
@@ -107,7 +102,7 @@ if (!global.hasOwnProperty('db')) {
   Meals.belongsToMany(Users, {through: 'Attendees'});
 
 
-
+//force true means that all tables will be droped when refreshed this might want removing!
   sequelize.sync({force: true});
 
   /*
