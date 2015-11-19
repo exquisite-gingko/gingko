@@ -7,19 +7,9 @@
 
   homeFactory.$inject = ['$http'];
 
-//     var data = {"title":"Indian","date":"Mon Nov 25 2015 21:00:00 GMT-0800 (PST)",
-// "time":"Mon Nov 25 2015 21:00:00 GMT-0800 (PST)",
-// "description":"Time for some Curry",
-// "restaurant":"Indian Palace",
-// "address":"44 Haight Street",
-// "contact":"83638202",
-// "firstName":"David",
-// "lastName":"Tsai"};
-
   function homeFactory($http) {
     var services = {
       
-      //activate : activate,
       getMeals : getMeals,
       getEvent : getEvent
 
@@ -27,31 +17,16 @@
 
     return services;
 
-    // function activate () {
-    //   getMeals();
-    // }
-
-    // function postMeal (d) {
-    //   return $http({
-    //   method: 'POST',
-    //   url: '/api/in/meals',
-    //   data: data
-    //   })
-    //   .then(function (response) {
-    //     console.log('response returned!!');
-    //     return response.data;
-    //   });
-
-    // }
-
     function getEvent () {
-      console.log('in get event');
       return $http({
       method: 'GET',
+      //hard coded in number(id as the meal id) for the minute need to work out how to get this id 
+      //number to be kept with the infor displayed on the events page
+      //so that when it is clicked on to show the whole event you know what event to query from the db
+      //this also wants moking to the meal view
       url: '/api/in/meals/1'
       })
       .then(function (response) {
-        console.log('---------------------',response.data);
         return response.data;
       });
     }
@@ -62,7 +37,6 @@
       url: '/api/in/meals'
       })
       .then(function (response) {
-        console.log(response.data);
         return response.data;
       });
     }
